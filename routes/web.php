@@ -1,18 +1,29 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 use App\Http\Controllers\MoodController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\DataController;
+use App\Http\Controllers\SettingsController;
 
-Route::get('/', [MoodController::class, 'index']);
-Route::post('/mood/store', [MoodController::class, 'store']);
+//Main Index
+Route::get('/', [MoodController::class, 'index'])->name('index');
+//Route to dashboard
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
+
+});
+//Admin pages
+Route::get('Admin/users', [UserController::class, 'index'])->name('users');
+Route::get('Admin/data', [DataController::class, 'index'])->name('data');
+Route::get('Admin/settings', [SettingsController::class, 'index'])->name('settings');
+Route::fallback(function () {
+    return view('Admin.404');
+});
+//Login/Logout
+Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [LoginController::class, 'login']);
+Route::get('/logout', [DashboardController::class, 'logout'])->name('logout');
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');

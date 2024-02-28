@@ -1,0 +1,35 @@
+* {
+    -webkit-user-select: none; 
+    -moz-user-select: none; 
+    -ms-user-select: none; 
+    user-select: none;
+    text-decoration: none;
+    
+}
+body {
+    background-color: #e0e0e0;
+    font-family: 'Poppins', sans-serif;
+
+    text-align: center;
+    margin-top: 140px;
+}
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: #db2511;
+}
+a {
+    font-weight: bold;
+    color: #3469db;
+}
+a:hover {
+    text-decoration: underline;
+
+}
