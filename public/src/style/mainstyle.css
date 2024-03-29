@@ -15,5 +15,742 @@
     font-family: 'Poppins', sans-serif;
     text-decoration: none;
     color: white;
+    z-index: hidden;
+    
   }
 
+.burger-menu,
+.navbar {
+    background-color: var(--bg-color);
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 2rem;
+}
+
+/* PC */
+@media only screen and (min-width:1024px) {
+  * {
+    transition: var(--basic-transition-ms);
+  }
+  .burger-menu,
+.navbar a{
+    font-size: 2.8rem;
+}
+  .moodsection {
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    transition: 600ms;
+  }
+  .moodmeter-button {
+    text-decoration: none;
+    background-color: var(--bg-color);
+    color: var(--primary-text-color);
+    padding: 20px;
+    font-weight: bold;
+    border: 2px solid var(--border-color); 
+    border-radius: 10px;
+    transition: border-color 0.3s;
+    cursor: pointer;
+    transition: var(--basic-transition-ms);
+    font-size: 1.4rem;
+}  
+  .moodmeter-text {
+    color: var(--bg-color);
+    font-size: 2.8rem;
+    padding-top: 60px;
+    margin-bottom: -260px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .moodsection img {
+    cursor: pointer;
+    margin: 10px; 
+    transform: scale(1);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+
+  .moodsection img:hover {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+
+  .moodsection img.selected {
+    border: 2px solid red; 
+  }
+  .moodmeter-button:hover {
+    cursor: pointer;
+    background-color: #094268;
+    transition: var(--basic-transition-ms);
+  }    .buttons {
+    display: none;
+    justify-content: center;
+  }
+
+  .buttons.show {
+    display: flex;
+  }
+
+  .buttons button {
+    margin: 10px;
+  }
+    .sendbtn{
+      background-color: var(--bg-color);
+      color: var(--primary-text-color);
+      padding: 20px;
+      margin-top: 20px;
+      font-weight: bold;
+      border-radius: 15px;
+      transition: var(--basic-transition-ms);
+      font-size: 1.4rem;
+      width: 100%;
+    }
+    .sendbtn:hover{ 
+      cursor: pointer;
+      background-color: #094268;
+      transition: var(--basic-transition-ms);
+    }
+    #enqueteForm {
+      display: none;
+      position: fixed;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      border: 3px solid var(--bg-color);
+      padding: 20px;
+      border-radius: 15px;
+      z-index: 1000;
+      width: 74%; 
+    }
+
+    #enqueteForm.open {
+      display: block;
+    }
+    #closeButton {
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      font-size: 2.6rem;
+      color: red;
+  }
+  label {
+    color: black;
+      font-weight: bold;
+      font-size: 1.8rem;
+  }
+  
+  input,
+  select,
+  textarea,option {
+      width: 100%;
+      padding: 8px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 1.4rem;
+      color: black;
+  }
+  .required{
+    color: red;
+    font-weight: bold !important;
+  }
+  .emojiIsSaved{
+   font-weight: bold ;
+   color: red;
+  }
+  input[type="checkbox"]#data {
+    height: 20px;
+    width: 20px;
+    background-color: #ffffff;
+    border-radius: 50%;
+}
+
+input[type="checkbox"]#data:checked {
+    background-color: white;
+}
+
+input[type="checkbox"]#data:required {
+    border-color: red;
+}
+
+label[for="data"] {
+    font-size: 1rem;
+    color: black;
+}
+
+    .burger-menu {
+        display: none !important;
+    }
+
+    .navbar {
+        background-color: var(--bg-color);
+        padding: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 1.8rem;
+    }
+}
+
+/* Laptop */
+@media only screen and (min-width:992px) and (max-width:1023px){
+  * {
+    transition: var(--basic-transition-ms);
+  }
+  .moodsection {
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    transition: 600ms;
+    display: flex;
+    padding-top: 320px;
+  }
+  .moodmeter-button {
+    text-decoration: none;
+    background-color: var(--bg-color);
+    color: var(--primary-text-color);
+    padding: 20px;
+    font-weight: bold;
+    border: 2px solid var(--border-color); 
+    border-radius: 10px;
+    transition: border-color 0.3s;
+    cursor: pointer;
+    transition: var(--basic-transition-ms);
+    font-size: 1.4rem;
+}  
+  .moodmeter-text {
+    color: var(--bg-color);
+    font-size: 2.8rem;
+    padding-top: 60px;
+    margin-bottom: -280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .moodsection img {
+    cursor: pointer;
+    margin: -15px; 
+    transform: scale(0.8);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+
+  .moodsection img:hover {
+    transform: scale(0.85);
+    opacity: 1;
+  }
+
+  .moodsection img.selected {
+    border: 2px solid red; 
+  }
+  .moodmeter-button:hover {
+    cursor: pointer;
+    background-color: #094268;
+    transition: var(--basic-transition-ms);
+  }    .buttons {
+    display: none;
+    justify-content: center;
+  }
+
+  .buttons.show {
+    display: flex;
+  }
+
+  .buttons button {
+    margin: 10px;
+  }
+    .sendbtn{
+      background-color: var(--bg-color);
+      color: var(--primary-text-color);
+      padding: 20px;
+      margin-top: 20px;
+      font-weight: bold;
+      border-radius: 15px;
+      transition: var(--basic-transition-ms);
+      font-size: 1.4rem;
+      width: 100%;
+    }
+    .sendbtn:hover{ 
+      cursor: pointer;
+      background-color: #094268;
+      transition: var(--basic-transition-ms);
+    }
+    #enqueteForm {
+      display: none;
+      position: fixed;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      border: 3px solid var(--bg-color);
+      padding: 20px;
+      border-radius: 15px;
+      z-index: 1000;
+      width: 74%; 
+    }
+
+    #enqueteForm.open {
+      display: block;
+    }
+    #closeButton {
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      font-size: 2.6rem;
+      color: red;
+  }
+  label {
+    color: black;
+      font-weight: bold;
+      font-size: 1.8rem;
+  }
+  
+  input,
+  select,
+  textarea,option {
+      width: 100%;
+      padding: 8px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 1.4rem;
+      color: black;
+  }
+  .required{
+    color: red;
+    font-weight: bold !important;
+  }
+  .emojiIsSaved{
+   font-weight: bold ;
+   color: red;
+  }
+  input[type="checkbox"]#data {
+    height: 20px;
+    width: 20px;
+    background-color: #ffffff;
+    border-radius: 50%;
+}
+
+input[type="checkbox"]#data:checked {
+    background-color: white;
+}
+
+input[type="checkbox"]#data:required {
+    border-color: red;
+}
+
+label[for="data"] {
+    font-size: 1rem;
+    color: black;
+}
+    .burger-menu {
+        display: none !important;
+    }
+
+    .navbar {
+        background-color: var(--bg-color);
+        padding: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 1.8rem;
+    }
+}
+
+/* Tab */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  * {
+    transition: var(--basic-transition-ms);
+  }
+    .navbar {
+        display: none;
+    }
+
+    .burger-menu {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start; 
+    }
+
+    .burger-menu-links {
+        display: none;
+        flex-direction: column;
+    }
+
+    .burger-menu.show .burger-menu-links {
+        display: flex;
+    }
+
+    .burger-menu a {
+        color: white;
+        text-decoration: none;
+        margin: 10px 5px;
+    }
+    
+    section {
+      padding: 20px;
+    }
+
+    .buttons {
+      display: none;
+      justify-content: center;
+    }
+
+    .buttons.show {
+      display: flex;
+    }
+
+    .buttons button {
+      margin: 10px;
+    }
+    .message {
+      display: flex;
+      padding: 10px;
+      flex-direction: column; 
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 10px;
+      font-size: 2.2rem;
+    }
+    .moodmeter-button {
+      text-decoration: none;
+      background-color: var(--bg-color);
+      color: var(--primary-text-color);
+      padding: 20px;
+      font-weight: bold;
+      border: 2px solid var(--border-color); 
+      border-radius: 10px;
+      transition: border-color 0.3s;
+      cursor: pointer;
+      transition: var(--basic-transition-ms);
+      font-size: 1.4rem;
+  }  
+  .moodsection {
+    display: flex;
+    flex-direction: column; 
+    justify-content: center;
+    
+    align-items: center;
+    padding-top: 320px;
+  }.moodmeter-text {
+    color: var(--bg-color);
+    font-size: 2.7rem;
+    padding-top: -40px;
+    margin-bottom: -280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .moodsection img {
+    cursor: pointer;
+  }
+  .moodsection img {
+    cursor: pointer;
+    margin: -25px;
+    transform: scale(0.7);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+
+.moodsection img:hover {
+    transform: scale(0.75);
+    opacity: 1;
+}
+  .moodsection img.selected {
+    border: 2px solid red; 
+  }
+  .moodmeter-button:hover {
+    cursor: pointer;
+    background-color: #094268;
+    transition: var(--basic-transition-ms);
+  }
+    .sendbtn{
+      background-color: var(--bg-color);
+      color: var(--primary-text-color);
+      padding: 20px;
+      margin-top: 20px;
+      font-weight: bold;
+      border-radius: 15px;
+      transition: var(--basic-transition-ms);
+      font-size: 1.4rem;
+      width: 100%;
+    }
+    .sendbtn:hover{ 
+      cursor: pointer;
+      background-color: #094268;
+      transition: var(--basic-transition-ms);
+    }
+    #enqueteForm {
+      display: none;
+      position: fixed;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      border: 3px solid var(--bg-color);
+      padding: 20px;
+      border-radius: 15px;
+      z-index: 1000;
+      width: 70%; 
+    }
+
+    #enqueteForm.open {
+      display: block;
+    }
+    #closeButton {
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      font-size: 2.4rem;
+      color: red;
+  }
+  label {
+    color: black;
+      font-weight: bold;
+      font-size: 1.8rem;
+  }
+  
+  input,
+  select,
+  textarea,option {
+      width: 100%;
+      padding: 8px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 1.4rem;
+      color: black;
+  }
+  .required{
+    color: red;
+    font-weight: bold !important;
+  }
+  .emojiIsSaved{
+   font-weight: bold ;
+   color: red;
+  }
+  input[type="checkbox"]#data {
+    height: 20px;
+    width: 20px;
+    background-color: #ffffff;
+    border-radius: 50%;
+}
+
+input[type="checkbox"]#data:checked {
+    background-color: white;
+}
+
+input[type="checkbox"]#data:required {
+    border-color: red;
+}
+
+label[for="data"] {
+    font-size: 1rem;
+    color: black;
+}
+}
+
+/* Phone */
+@media only screen and (max-width: 767px) {
+  * {
+    transition: var(--basic-transition-ms);
+  }
+    .navbar {
+        display: none;
+    }
+
+    .burger-menu {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start; 
+    }
+
+    .burger-menu-links {
+        display: none;
+        flex-direction: column;
+    }
+
+    .burger-menu.show .burger-menu-links {
+        display: flex;
+    }
+
+    .burger-menu a {
+        color: white;
+        text-decoration: none;
+        margin: 10px 5px;
+    }
+
+
+    section {
+      padding: 20px;
+    }
+
+    .buttons {
+      display: none;
+      justify-content: center;
+    }
+
+    .buttons.show {
+      display: flex;
+    }
+
+    .buttons button {
+      margin: 10px; 
+    }
+    .message {
+      display: flex;
+      padding: 10px;
+      flex-direction: column; 
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 10px;
+      font-size: 2.2rem;
+    }
+    .moodmeter-button {
+      text-decoration: none;
+      background-color: var(--bg-color);
+      color: var(--primary-text-color);
+      padding: 20px;
+      font-weight: bold;
+      border: 2px solid var(--border-color);
+      border-radius: 10px;
+      transition: border-color 0.3s; 
+      cursor: pointer;
+      transition: var(--basic-transition-ms);
+      font-size: 1.4rem;
+  }  
+  .moodsection {
+    display: flex;
+    flex-direction: column; 
+    justify-content: center;
+    align-items: center;
+    padding-top: 320px;
+    
+  }.moodmeter-text {
+    color: var(--bg-color);
+    font-size: 2.7rem;
+    padding-top: -40px;
+    margin-bottom: -280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .moodsection img {
+    cursor: pointer;
+  }
+  .moodsection img {
+    cursor: pointer;
+    margin: -35px;
+    transform: scale(0.6);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+
+.moodsection img:hover {
+    transform: scale(0.65);
+    opacity: 1;
+}
+  .moodsection img.selected {
+    border: 2px solid red; 
+  }
+  .moodmeter-button:hover {
+    cursor: pointer;
+    background-color: #094268;
+    transition: var(--basic-transition-ms);
+  }
+    .sendbtn{
+      background-color: var(--bg-color);
+      color: var(--primary-text-color);
+      padding: 8px;
+      margin-top: 10px;
+      font-weight: bold;
+      border-radius: 15px;
+      transition: var(--basic-transition-ms);
+      font-size: 1.4rem;
+      width: 100%;
+    }
+    .sendbtn:hover{ 
+      cursor: pointer;
+      background-color: #094268;
+      transition: var(--basic-transition-ms);
+    }
+    #enqueteForm {
+      display: none;
+      position: fixed;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      border: 3px solid var(--bg-color);
+      padding: 20px;
+      border-radius: 15px;
+      z-index: 1000;
+      width: 70%;
+    }
+
+    #enqueteForm.open {
+      display: block;
+    }
+    #closeButton {
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      font-size: 2rem;
+      color: red;
+  }
+  label {
+    color: black;
+      font-weight: bold;
+      font-size: 1.4rem;
+  }
+  
+  input,
+  select,
+  textarea,option {
+      width: 100%;
+      padding: 8px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 1.4rem;
+      color: black;
+  }
+  .required{
+    color: red;
+    font-weight: bold !important;
+  }
+  .emojiIsSaved{
+   font-weight: bold ;
+   color: red;
+  }
+  input[type="checkbox"]#data {
+    height: 20px;
+    width: 20px;
+    background-color: #ffffff;
+    border-radius: 50%;
+}
+
+input[type="checkbox"]#data:checked {
+    background-color: white;
+}
+
+input[type="checkbox"]#data:required {
+    border-color: red;
+}
+
+label[for="data"] {
+    font-size: 1rem;
+    color: black;
+}
+
+  }
+  

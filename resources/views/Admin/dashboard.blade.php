@@ -61,7 +61,8 @@
             <div class="designation">{{ Auth::user()->role }}</div>
           </div>
           <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-          </form>
+    @csrf
+</form>
         </div>
         <i class="bx bx-log-out" id="log_out"></i>
       </li>

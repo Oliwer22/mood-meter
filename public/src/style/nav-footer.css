@@ -12,14 +12,7 @@ html, body {
     height: 100%;
 }
 
-body {
-    font-family: var(--fontstyle);
-    background-color: var(--bg-light);
-    -webkit-user-select: none; 
-    -moz-user-select: none; 
-    -ms-user-select: none; 
-    user-select: none;
-}
+
 
 .menu-items {
     display: flex;
@@ -32,13 +25,14 @@ body {
 
 footer {
     text-align: center;
-    padding: 10px;
+    padding: 20px;
     font-family: var(--fontstyle);
     font-size: 1.8rem;
     bottom: 0;
     background-color: var(--bg-color);
     color: white;
     transition: var(--basic-transition-ms);
+
 }
 
 footer a {
@@ -52,100 +46,3 @@ footer a:hover {
     cursor: pointer;
 }
 
-.burger-menu,
-.navbar {
-    background-color: var(--bg-color);
-    padding: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 1.8rem;
-}
-
-/* PC */
-@media only screen and (min-width:1024px) {
-    .burger-menu {
-        display: none !important;
-    }
-
-    .navbar {
-        background-color: var(--bg-color);
-        padding: 10px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        font-size: 1.8rem;
-    }
-}
-
-/* Laptop */
-@media only screen and (min-width:992px) and (max-width:1023px){
-    .burger-menu {
-        display: none !important;
-    }
-
-    .navbar {
-        background-color: var(--bg-color);
-        padding: 10px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        font-size: 1.8rem;
-    }
-}
-
-/* Tab */
-@media only screen and (min-width: 768px) and (max-width: 991px) {
-    .navbar {
-        display: none;
-    }
-
-    .burger-menu {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start; /* Align icon and links to the left */
-    }
-
-    .burger-menu-links {
-        display: none;
-        flex-direction: column;
-    }
-
-    .burger-menu.show .burger-menu-links {
-        display: flex;
-    }
-
-    .burger-menu a {
-        color: white;
-        text-decoration: none;
-        margin: 10px 5px;
-    }
-}
-
-/* Phone */
-@media only screen and (max-width: 767px) {
-    .navbar {
-        display: none;
-    }
-
-    .burger-menu {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start; /* Align icon and links to the left */
-    }
-
-    .burger-menu-links {
-        display: none;
-        flex-direction: column;
-    }
-
-    .burger-menu.show .burger-menu-links {
-        display: flex;
-    }
-
-    .burger-menu a {
-        color: white;
-        text-decoration: none;
-        margin: 10px 5px;
-    }
-}
