@@ -35,27 +35,3 @@ function handleClickOutside(event) {
 }
 
 
-window.onload = function() {
-  document.getElementById('emojiButtons').style.display = 'none'; 
-}
-
-function handleClick(emoji) {
-  console.log(emoji); 
-  document.getElementById('emojiButtons').style.display = 'flex'; 
-}
-
-function saveEmoji() {
-  // Save emoji function
-}
-
-function openEnqueteForm() {
-  document.getElementById('enqueteForm').classList.add('open');
-  window.addEventListener('keydown', function(event) {
-    if (event.key === 'Escape') {
-      closeEnqueteForm();
-    }
-  });
-}
-function closeEnqueteForm() {
-  document.getElementById('enqueteForm').classList.remove('open');
-};

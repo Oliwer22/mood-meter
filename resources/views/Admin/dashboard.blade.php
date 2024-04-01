@@ -6,7 +6,11 @@
 <head>
   <title>Mood Dashboard</title>
   <link rel="stylesheet" href="{{ asset('src/style/slider.css') }}" />
+  <link rel="stylesheet" href="{{ asset('src/style/dashmain.css') }}" />
+
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
 </head>
 <body>
   <div class="sidebar">
@@ -69,16 +73,29 @@
     </ul>
   </div>
   <section class="dash-section">
-    <div class="text">Dashboard</div>
-  </section>
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      document.getElementById('log_out').addEventListener('click', function() {
-        document.getElementById('logout-form').submit();
-      });
-    });
-  </script>
+      <div class="text">Dashboard</div>
+      <div>
+      <div class="dayBtn">
+        <button id="oneDay">1D</button>
+        <button id="threeDays">3D</button>
+        <button id="sevenDays">7D</button>
+      </div>
+      <div class="AllStats">
+        <canvas id="AllStats" ></canvas>
+      </div>
+      <div class="wrapper">
+        <div class="data1">
+          <canvas width="400" height="400" id="emojiChart"></canvas>
+        </div>
+        <div class="data2">
+        
+        </div>
+      </div>
+
   <script src="{{ asset('src/script/scripts.js') }}"></script>
+  <script src="{{ asset('src/script/stats.js') }}"></script>
+  <script src="{{ asset('src/script/data.js') }}"></script>
+
 </body>
 </html>
 @endif

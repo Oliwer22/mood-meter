@@ -14,6 +14,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+
+use App\Http\Controllers\EmojiController;
+use App\Http\Controllers\DashboardController;
+
+
+Route::post('/emojis', [EmojiController::class, 'store']);
+Route::get('/emojis', 'DashboardController@getEmojis');
+Route::get('/emojis', [DashboardController::class, 'getEmojis']);
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });

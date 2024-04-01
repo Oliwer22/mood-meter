@@ -18,7 +18,9 @@
     z-index: hidden;
     
   }
-
+body {
+  background-color: rgb(236, 237, 240);
+}
 .burger-menu,
 .navbar {
     background-color: var(--bg-color);
@@ -28,7 +30,9 @@
     align-items: center;
     font-size: 2rem;
 }
-
+.btn-bg {
+  background-color: var(--bg-color);
+}
 /* PC */
 @media only screen and (min-width:1024px) {
   * {
@@ -81,8 +85,11 @@
   }
 
   .moodsection img.selected {
-    border: 2px solid red; 
-  }
+    filter: drop-shadow(0 0 10px #3366ff);
+    transform: scale(1.2);
+}
+
+
   .moodmeter-button:hover {
     cursor: pointer;
     background-color: #094268;
@@ -131,6 +138,7 @@
 
     #enqueteForm.open {
       display: block;
+      
     }
     #closeButton {
       position: absolute;
@@ -248,8 +256,10 @@ label[for="data"] {
   }
 
   .moodsection img.selected {
-    border: 2px solid red; 
-  }
+    filter: drop-shadow(0 0 10px #3366ff);
+    transform: scale(1);
+}
+
   .moodmeter-button:hover {
     cursor: pointer;
     background-color: #094268;
@@ -464,9 +474,11 @@ label[for="data"] {
     transform: scale(0.75);
     opacity: 1;
 }
-  .moodsection img.selected {
-    border: 2px solid red; 
-  }
+.moodsection img.selected {
+  filter: drop-shadow(0 0 10px #3366ff);
+  transform: scale(0.8);
+}
+
   .moodmeter-button:hover {
     cursor: pointer;
     background-color: #094268;
@@ -659,9 +671,11 @@ label[for="data"] {
     transform: scale(0.65);
     opacity: 1;
 }
-  .moodsection img.selected {
-    border: 2px solid red; 
-  }
+.moodsection img.selected {
+  filter: drop-shadow(0 0 10px #3366ff);
+  transform: scale(0.7);
+}
+
   .moodmeter-button:hover {
     cursor: pointer;
     background-color: #094268;
@@ -754,3 +768,27 @@ label[for="data"] {
 
   }
   
+
+  .message {
+    color: white;
+    padding: 20px;
+    text-align: center;
+    position: fixed;
+    top: 20px;
+    left: 0;
+    width: 100%;
+    font-size: 2rem;
+    display: none; 
+}
+
+.success {
+    background-color: green;
+}
+
+.error {
+    background-color: red;
+}
+
+.cooldown {
+    background-color: blue;
+}

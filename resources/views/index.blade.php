@@ -31,25 +31,119 @@
 <section id="Moodmeter">
     <h1 class='moodmeter-text'>Moodmeter Invullen?</h1>
     <div class="moodsection">
-        <div>
-            <img src="{{ asset('src/svg/dead.svg') }}" alt="Dead emoji" width="200px" height="200px" onclick="handleClick('dead')">
-        </div>
-        <div>
-            <img src="{{ asset('src/svg/frown.svg') }}" alt="Frown emoji" width="200px" height="200px" onclick="handleClick('frown')">
-        </div>
-        <div>
-            <img src="{{ asset('src/svg/neutral.svg') }}" alt="Neutral emoji" width="200px" height="200px" onclick="handleClick('neutral')">
-        </div>
-        <div>
-            <img src="{{ asset('src/svg/smile.svg') }}" alt="Smile emoji" width="200px" height="200px" onclick="handleClick('smile')">
-        </div>
-        <div>
-            <img src="{{ asset('src/svg/happy.svg') }}" alt="Happy emoji" width="200px" height="200px" onclick="handleClick('happy')">
-        </div>
+    <div>
+        <img src="{{ asset('src/svg/dead.svg') }}" alt="Dead emoji" width="200px" height="200px" onclick="handleClick('Dead', 1)">
     </div>
-    
-    <div class="buttons" id="emojiButtons">
+    <div>
+        <img src="{{ asset('src/svg/frown.svg') }}" alt="Frown emoji" width="200px" height="200px" onclick="handleClick('Frown', 2)">
+    </div>
+    <div>
+        <img src="{{ asset('src/svg/neutral.svg') }}" alt="Neutral emoji" width="200px" height="200px" onclick="handleClick('Neutral', 3)">
+    </div>
+    <div>
+        <img src="{{ asset('src/svg/smile.svg') }}" alt="Smile emoji" width="200px" height="200px" onclick="handleClick('Smile', 4)">
+    </div>
+    <div>
+        <img src="{{ asset('src/svg/happy.svg') }}" alt="Happy emoji" width="200px" height="200px" onclick="handleClick('Happy', 5)">
+    </div>
+</div>
+<div class="buttons" id="emojiButtons">
     <button id="saveButton" class='moodmeter-button' onclick="saveEmoji()">Verstuur</button>
+    <div id="successMessage" class="message success" style="display: none;"></div>
+    <div id="errorMessage" class="message error" style="display: none;"></div>
+    <div id="cooldownMessage" class="message cooldown" style="display: none;"></div>
+
+<script>
+    var selectedEmoji;
+    var selectedEmojiId;
+    var isCooldown = false;
+
+    function handleClick(emoji, emojiId) {
+        selectedEmoji = emoji;
+        selectedEmojiId = emojiId;
+        var selectedEmojiElement = document.querySelector('.selected');
+        if (selectedEmojiElement) {
+            selectedEmojiElement.classList.remove('selected');
+        }
+        var capitalizedEmoji = emoji.charAt(0).toUpperCase() + emoji.slice(1);
+        var clickedEmoji = document.querySelector(`img[alt="${capitalizedEmoji} emoji"]`);
+        if (clickedEmoji) {
+            clickedEmoji.classList.add('selected');
+        }
+        console.log(emoji); 
+        document.getElementById('emojiButtons').style.display = 'flex'; 
+    }
+
+    function saveEmoji() {
+        if (isCooldown) {
+            showCooldownMessage();
+            return;
+        }
+        var saveButton = document.getElementById('saveButton');
+        saveButton.disabled = true;
+        var emoji = selectedEmoji;
+        var emojiId = selectedEmojiId;
+        fetch('/api/emojis', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ emoji: emoji, emoji_id: emojiId }), // Include emoji_id in the request body
+})
+        .then(response => {
+            if (response.ok) {
+                showSuccessMessage('Emoji is saved');
+                console.log('Emoji is saved');
+                isCooldown = true;
+                setTimeout(() => {
+                    isCooldown = false;
+                    saveButton.disabled = false;
+                }, 5000); 
+            } else {
+                console.error('Failed to save emoji. Try again later.');
+                showError('Failed to save emoji. Try again later.');
+            }
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+            showError('An error occurred. Please try again later.');
+            saveButton.disabled = false; 
+        });
+    }
+
+    function showSuccessMessage(message) {
+        showMessage(message, 'green');
+    }
+
+    function showError(message) {
+        showMessage(message, 'red');
+    }
+
+    function showCooldownMessage() {
+        showMessage('Cooldown');
+    }
+
+    function showMessage(message, color) {
+        var messageDiv = document.createElement('div');
+        messageDiv.textContent = message;
+        messageDiv.style.backgroundColor = color;
+        messageDiv.style.color = 'white';
+        messageDiv.style.padding = '20px';
+        messageDiv.style.textAlign = 'center';
+        messageDiv.style.position = 'fixed';
+        messageDiv.style.top = '20px';
+        messageDiv.style.left = '0';
+        messageDiv.style.width = '100%';
+        messageDiv.style.fontSize = '2rem';
+        document.body.appendChild(messageDiv);
+        setTimeout(function() {
+            document.body.removeChild(messageDiv);
+        }, 3000);
+    }
+</script>
+
+
+
     <button class='moodmeter-button' onclick="openEnqueteForm()">Enquete</button>
     </div>
     
@@ -100,6 +194,14 @@
   </footer>
 
   <script>
+
+
+
+
+
+
+
+
     function toggleMenu() {
         let burgerMenu = document.querySelector('.burger-menu');
         burgerMenu.classList.toggle('show');
@@ -120,3 +222,5 @@
 
 </html>
 <script src="{{ asset('src/script/scripts.js') }}"></script>
+<script src="{{ asset('src/script/main.js') }}"></script>
+

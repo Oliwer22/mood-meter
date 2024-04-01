@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+:root{
+  --color-default:#004f83;
+  --color-second:#3366ff;
+  --color-white:#fff;
+  --color-hover: #3366ff;
+  --color-body:rgb(236, 237, 240);
+  --color-light:#e0e0e0;
+  --fontstyle:'Poppins', sans-serif;
+
+}
+    canvas {
+    max-width: 800px;
+    display: block; 
+}  
+.AllStats {
+    display: flex;
+    margin-top: 20px;
+    border: 3px solid var(--color-default);
+    border-radius: 10px; 
+    width: 90%; 
+    height: 400px; 
+    margin: auto; 
+}
+
+.wrapper {
+    display: flex; 
+    justify-content: space-between; 
+    width: 90%; 
+    margin: auto; 
+}
+.data1, .data2 { 
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    border: 3px solid var(--color-default);
+    border-radius: 10px; 
+    width: 48%; 
+    height: 600px; 
+    margin: 20px 0;
+}

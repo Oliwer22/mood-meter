@@ -7,9 +7,20 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DataController;
 use App\Http\Controllers\SettingsController;
+use App\Http\Controllers\EmojiController;
+use App\Http\Controllers\StatsController;
+
+//Stats
+Route::get('/stats', [StatsController::class, 'AllStats']);
+
 
 //Main Index
 Route::get('/', [MoodController::class, 'index'])->name('index');
+Route::post('/emoji', [EmojiController::class, 'save'])->name('save-emoji');
+// routes/api.php
+
+Route::post('/emojis', 'EmojiController@store');
+
 //Route to dashboard
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
