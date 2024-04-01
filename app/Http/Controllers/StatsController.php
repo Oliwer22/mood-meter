@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Emoji;
+use App\Models\Review;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 class StatsController extends Controller
@@ -13,16 +14,30 @@ class StatsController extends Controller
     {
         $days = $request->query('days', 1);
 
-        $stats = Emoji::selectRaw('DATE_FORMAT(created_at, "%Y-%m-%d %H:00") as datetime, COUNT(*) as count')
+        $emojiStats = Emoji::selectRaw('DATE_FORMAT(created_at, "%Y-%m-%d %H:00") as datetime, COUNT(*) as count')
                         ->where('created_at', '>=', Carbon::now()->subDays($days))
                         ->groupBy('datetime')
                         ->orderBy('datetime')
                         ->get();
 
-        $labels = $stats->pluck('datetime')->toArray();
-        $counts = $stats->pluck('count')->toArray();
+        $reviewStats = Review::selectRaw('DATE_FORMAT(created_at, "%Y-%m-%d %H:00") as datetime, COUNT(*) as count')
+                        ->where('created_at', '>=', Carbon::now()->subDays($days))
+                        ->groupBy('datetime')
+                        ->orderBy('datetime')
+                        ->get();
 
-        return response()->json(['labels' => $labels, 'counts' => $counts]);
+        $emojiLabels = $emojiStats->pluck('datetime')->toArray();
+        $emojiCounts = $emojiStats->pluck('count')->toArray();
+
+        $reviewLabels = $reviewStats->pluck('datetime')->toArray();
+        $reviewCounts = $reviewStats->pluck('count')->toArray();
+
+        return response()->json([
+            'emojiLabels' => $emojiLabels, 
+            'emojiCounts' => $emojiCounts,
+            'reviewLabels' => $reviewLabels, 
+            'reviewCounts' => $reviewCounts
+        ]);
     }
     private function mergeStats($stats1, $stats2)
     {

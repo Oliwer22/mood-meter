@@ -73,25 +73,31 @@
     </ul>
   </div>
   <section class="dash-section">
-      <div class="text">Dashboard</div>
+      <div class="text">Dashboard, {{ Auth::user()->name }} | {{ Auth::user()->role }}</div>
       <div>
-      <div class="dayBtn">
-        <button id="oneDay">1D</button>
-        <button id="threeDays">3D</button>
-        <button id="sevenDays">7D</button>
-      </div>
-      <div class="AllStats">
-        <canvas id="AllStats" ></canvas>
-      </div>
-      <div class="wrapper">
-        <div class="data1">
-          <canvas width="400" height="400" id="emojiChart"></canvas>
-        </div>
-        <div class="data2">
-        
-        </div>
-      </div>
 
+      <div class="AllStats">
+      <div class="dayBtn">
+        <button id="oneDay" class="changeDbtn">1 Day</button>
+        <button id="threeDays" class="changeDbtn">3 Days</button>
+        <button id="sevenDays" class="changeDbtn">7 Days</button>
+      </div>
+        <canvas id="AllStats" ></canvas>
+        
+      </div>
+      
+      <div class="wrapper">
+      <div class="data1">
+    <canvas  id="emojiChart"></canvas>
+    </div>
+    <div class="data2">
+        <canvas id="emojiPieChart"></canvas>
+    </div>
+      </div>
+<script>    document.getElementById('log_out').addEventListener('click', function() {
+        console.log('Logout button clicked');
+        document.getElementById('logout-form').submit();
+    });</script>
   <script src="{{ asset('src/script/scripts.js') }}"></script>
   <script src="{{ asset('src/script/stats.js') }}"></script>
   <script src="{{ asset('src/script/data.js') }}"></script>

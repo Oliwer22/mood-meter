@@ -59,6 +59,7 @@
     var isCooldown = false;
 
     function handleClick(emoji, emojiId) {
+    document.getElementById('emojiIdInput').value = emojiId; // Set emoji ID
         selectedEmoji = emoji;
         selectedEmojiId = emojiId;
         var selectedEmojiElement = document.querySelector('.selected');
@@ -140,6 +141,7 @@
             document.body.removeChild(messageDiv);
         }, 3000);
     }
+    
 </script>
 
 
@@ -147,7 +149,8 @@
     <button class='moodmeter-button' onclick="openEnqueteForm()">Enquete</button>
     </div>
     
-    <form id="enqueteForm" class="openEnquete" method="POST" action="">
+    <form id="enqueteForm" class="openEnquete" method="POST" action="{{ route('Data/reviews') }}">
+    @csrf 
         <span id="closeButton" style="cursor: pointer;"onclick="closeEnqueteForm()">&times;</span>
         <input type="hidden" id="emojiIdInput" name="emoji_id" value="">
         <input type="hidden" id="emojiNameInput" name="emoji_name" value="">

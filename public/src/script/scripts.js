@@ -34,4 +34,25 @@ function handleClickOutside(event) {
   }
 }
 
-
+document.querySelectorAll('.delete-btn').forEach(function(button) {
+  button.addEventListener('click', function(event) {
+    event.stopPropagation(); 
+    var memberId = this.getAttribute('data-id');
+      fetch('/delete-member', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        },
+        body: JSON.stringify({ id: memberId })
+      })
+      .then(function(response) {
+        if (response.ok) {
+          location.reload();
+        } else {
+          alert('Error: ' + response.statusText);
+        }
+      });
+    
+  });
+});

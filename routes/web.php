@@ -9,6 +9,8 @@ use App\Http\Controllers\DataController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\EmojiController;
 use App\Http\Controllers\StatsController;
+use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\MembersController;
 
 //Stats
 Route::get('/stats', [StatsController::class, 'AllStats']);
@@ -17,6 +19,9 @@ Route::get('/stats', [StatsController::class, 'AllStats']);
 //Main Index
 Route::get('/', [MoodController::class, 'index'])->name('index');
 Route::post('/emoji', [EmojiController::class, 'save'])->name('save-emoji');
+Route::post('/reviews', [ReviewController::class, 'store'])->name('Data/reviews');
+Route::get('/reviews/data', [ReviewController::class, 'getDataForPieChart']);
+
 // routes/api.php
 
 Route::post('/emojis', 'EmojiController@store');
@@ -27,7 +32,9 @@ Route::middleware(['auth'])->group(function () {
 
 });
 //Admin pages
-Route::get('Admin/users', [UserController::class, 'index'])->name('users');
+Route::get('Admin/users', [MembersController::class, 'index'])->name('users');
+Route::post('/edit-review', [MembersController::class, 'editReview'])->name('edit-review');
+Route::post('/delete-member', [MembersController::class, 'deleteMember'])->name('delete-member');
 Route::get('Admin/data', [DataController::class, 'index'])->name('data');
 Route::get('Admin/settings', [SettingsController::class, 'index'])->name('settings');
 Route::fallback(function () {
