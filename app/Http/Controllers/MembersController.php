@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Review;
 use App\Models\ReviewEdit;
+use App\Exports\ReviewsExport;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 class MembersController extends Controller
 {
     public function getData()
@@ -37,7 +39,8 @@ class MembersController extends Controller
     public function index()
     {
         $members = Review::all();
-        return view('Admin/Page/users', ['members' => $members]);
+        $memberstotal = Review::count();
+        return view('Admin/Page/users', ['members' => $members, 'memberstotal'=>$memberstotal]);
     }
 
     public function editReview(Request $request)
@@ -59,5 +62,12 @@ class MembersController extends Controller
         $member->delete();
 
         return redirect('/members')->with('success', 'Member deleted successfully');
+    }
+    public function exportReviews()
+    {
+        $export = new ReviewsExport();
+        $file = $export->export();
+
+        return response()->download($file, 'reviews.xlsx')->deleteFileAfterSend(true);
     }
 }

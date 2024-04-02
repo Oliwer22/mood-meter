@@ -9,6 +9,7 @@
   --color-light:#e0e0e0;
   --basic-transition-ms: 300ms;
   --fontstyle:font-family: 'Poppins', sans-serif;
+  --btn-bg:#2f3136;
 }
     canvas {
     display: block; 
@@ -31,7 +32,7 @@
     width: 48%; 
     height: 600px; 
     margin: 20px 0;
-    padding-bottom: 20px;
+    padding: 10px;flex-direction: column; 
 
 }
 .AllStats {
@@ -53,19 +54,18 @@
 }
 
 .changeDbtn{
-    background-color: var(--color-default);
-    color: white;
+    color: #3366ff;
     padding: 8px;
     font-weight: bold;
-    border: none;
+    border: 3px solid #3366ff ;
     border-radius: 5px;
     transition: var(--basic-transition-ms);
 }
 
 .changeDbtn:hover{ 
-    cursor: pointer;
-    background-color: #094268;
-    transition: var(--basic-transition-ms);
+    color: white;
+    background-color: #3366ff;
+
 }
 
 
@@ -80,6 +80,18 @@
     background-color: var(--color-white);
     transition: var(--basic-transition-ms);
     margin-bottom: 20px;
+}
+.member-total{
+    display: flex; 
+    align-items: center; 
+    padding: 10px; 
+    border-bottom: 1px solid var(--color-default);
+    border-radius: 10px; 
+    margin: 10px; 
+    background-color: var(--color-white);
+    transition: var(--basic-transition-ms);
+    margin-bottom: 20px;
+    max-width: 10%;
 }
 .member-text {
     font-weight: bold;
@@ -117,4 +129,41 @@
     border-bottom: 1px solid var(--color-default);
     background-color: #ebebeb;
 
+}
+.mainbtn{
+    background-color: var(--btn-bg);
+    padding: 8px;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: var(--basic-transition-ms);
+}
+
+.mainbtn:hover{ 
+    cursor: pointer;
+    transition: var(--basic-transition-ms);
+}
+.delete-btn{
+    background-color: var(--btn-bg);
+    color: red;
+    padding: 8px;
+    font-weight: bold;
+    border: 3px solid red;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+.delete-btn:hover{ 
+    color: white;
+    background-color: red;
+}
+.export-btn{
+    background-color: var(--btn-bg);
+    color: var(--color-hover);
+    padding: 8px;
+    font-weight: bold;
+    border: 3px solid var(--color-hover);
+    border-radius: 5px;
+}
+.export-btn:hover{ 
+    color: white;
+    background-color: var(--color-hover);
 }

@@ -56,3 +56,13 @@ document.querySelectorAll('.delete-btn').forEach(function(button) {
     
   });
 });
+
+document.getElementById('export-btn').addEventListener('click', function() {
+  fetch('/export-reviews', {
+      method: 'GET',
+  })
+  .then(response => {
+  })
+  .catch(error => {
+  });
+});

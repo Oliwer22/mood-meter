@@ -16,7 +16,6 @@ public function store(Request $request)
         'review' => 'required',
         'emoji_id' => 'required',
     ]);
-
     $data['lastName'] = $request->lastName ?? null;
     $data['leeftijd'] = $request->leeftijd ?? null;
     $data['address'] = $request->address ?? null;
@@ -36,6 +35,7 @@ public function store(Request $request)
             'emoji_id' => $request->emoji_id,
         ]);
     }
+    
     return back();
 }
 private function getEmojiNameById($id)

@@ -3,13 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\Emoji;
+use App\Models\Review;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Laravel\Ui\Presets\React;
 
 class DashboardController extends Controller 
 {
     public function dashboard() {
-        return view('Admin.dashboard');
+        $emojiChartTotal = Emoji::count();
+        $emojiPieChartTotal = Review::count(); 
+    
+        return view('Admin/dashboard', ['emojiChartTotal' => $emojiChartTotal, 'emojiPieChartTotal' => $emojiPieChartTotal]);
     }
 
     public function getEmojis() {

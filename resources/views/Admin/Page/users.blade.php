@@ -77,29 +77,37 @@
   <section class="dash-section">
     <div class="text">Members</div>
     <div class="functionsdiv">
-        <button id="" class="changeDbtn">Export 1</button>
-        <button id="" class="changeDbtn">Export 2</button>
+    <button id="export-btn" class="mainbtn export-btn" onclick="window.location.href='/export-reviews'">Export Reviews</button>
+
+        <button id="" class="mainbtn export-btn">Export 2</button>
         <input type="text" id="search-input" class="search-input" placeholder="Search...">
     </div>
     <div>
         @if($members->isEmpty())
+        <div class="member">
             <p>No members found.</p>
-        @else
+        </div>
+            @else
+        <p><span class="member-total member-text">Totaal Reviews: {{ $memberstotal }}</span></p>
+
         @foreach ($members as $member)
-    <div class="member" id="member-{{ $member->id }}">
+        <div class="member" id="member-{{ $member->id }}">
         <div>
-            <p><span class="member-text">Name:</span> {{ $member->name }} | <span class="member-text">Email:</span> {{ $member->email }}</p>
+            <p><span class="member-text">Naam:</span> {{ $member->name }} | <span class="member-text">Email:</span> {{ $member->email }}</p>
             <div class="additional-details">
+              <p><span class="member-text">Opleiding: </span>{{ $member->opleiding}}</p>
+              <p><span class="member-text">Datu: </span>{{ $member->datum}}</p>
+
                 <p><span class="member-text">Review:</span></p>
                 <div class="revDiv">{{ $member->review }}</div>
                 <textarea class="edit-review" style="display: none;">{{ $member->review }}</textarea>
-                <button class="save-btn" style="display: none;">Save</button>
-                <button class="delete-btn" data-id="{{ $member->id }}">Delete</button>
+                
+                <button class="mainbtn delete-btn" data-id="{{ $member->id }}">Delete</button>
             </div>
         </div>
         <i class="icon bx bx-chevron-down" style="float: right;"></i>
     </div>
-@endforeach
+        @endforeach
         @endif
     </div>
 </section>
@@ -116,7 +124,7 @@
           }
         }.bind(this));
         var additionalDetails = this.querySelector('.additional-details');
-        additionalDetails.style.maxHeight = additionalDetails.style.maxHeight === '0px' ? '100px' : '0px';
+        additionalDetails.style.maxHeight = additionalDetails.style.maxHeight === '0px' ? '200px' : '0px';
       });
     });
 document.getElementById('search-input').addEventListener('input', function() {

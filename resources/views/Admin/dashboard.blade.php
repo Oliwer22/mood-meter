@@ -78,9 +78,9 @@
 
       <div class="AllStats">
       <div class="dayBtn">
-        <button id="oneDay" class="changeDbtn">1 Day</button>
-        <button id="threeDays" class="changeDbtn">3 Days</button>
-        <button id="sevenDays" class="changeDbtn">7 Days</button>
+        <button id="oneDay" class="mainbtn changeDbtn">1 Day</button>
+        <button id="threeDays" class="mainbtn changeDbtn">3 Days</button>
+        <button id="sevenDays" class="mainbtn changeDbtn">7 Days</button>
       </div>
         <canvas id="AllStats" ></canvas>
         
@@ -89,9 +89,11 @@
       <div class="wrapper">
       <div class="data1">
     <canvas  id="emojiChart"></canvas>
+    <p><span class="member-text">Total Members: {{ $emojiChartTotal }}</span></p>
     </div>
     <div class="data2">
         <canvas id="emojiPieChart"></canvas>
+        <p><span class="member-text">Total Members: {{ $emojiPieChartTotal }}</span></p>
     </div>
       </div>
 <script>    document.getElementById('log_out').addEventListener('click', function() {
