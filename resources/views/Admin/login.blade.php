@@ -18,7 +18,6 @@
 
     </div>
 </div>
-
 <div class="burger-menu">
     <div class="burger-icon" onclick="toggleMenu()">&#9776;</div>
     <div class="burger-menu-links">
@@ -28,7 +27,6 @@
     </div>
 </div>
 <body>
-   
     <div class="flex flex-col items-center justify-start min-h-screen pt-32">
     <div id="login-form" class="w-full max-w-lg bg-white rounded-lg shadow-md p-6">
     <form  method="POST" action="{{ route('login') }}" class="flex flex-col ">

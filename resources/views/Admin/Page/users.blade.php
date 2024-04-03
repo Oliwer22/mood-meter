@@ -1,5 +1,5 @@
 @if (!Auth::check())
-    @include('404')
+    @include('Admin/404')
 @else
 <!DOCTYPE html>
 <html lang="en">
@@ -73,13 +73,11 @@
       </li>
     </ul>
   </div>
-
   <section class="dash-section">
     <div class="text">Members</div>
     <div class="functionsdiv">
     <button id="export-btn" class="mainbtn export-btn" onclick="window.location.href='/export-reviews'">Export Reviews</button>
-
-        <button id="" class="mainbtn export-btn">Export 2</button>
+        <button id="" class="mainbtn delete-btn-all" onclick="if(confirm('{{ Auth::user()->name }} Are you sure?')) { window.location.href='/dell-reviews' }">Delete All</button>
         <input type="text" id="search-input" class="search-input" placeholder="Search...">
     </div>
     <div>
@@ -93,11 +91,15 @@
         @foreach ($members as $member)
         <div class="member" id="member-{{ $member->id }}">
         <div>
-            <p><span class="member-text">Naam:</span> {{ $member->name }} | <span class="member-text">Email:</span> {{ $member->email }}</p>
+            <p>
+              <span class="member-text">Nr:</span> {{ $member->id }} |
+            <span class="member-text">Naam:</span> {{ $member->name }} | 
+            <span class="member-text">Email:</span> {{ $member->email }}</p>
             <div class="additional-details">
               <p><span class="member-text">Opleiding: </span>{{ $member->opleiding}}</p>
-              <p><span class="member-text">Datu: </span>{{ $member->datum}}</p>
-
+              <p><span class="member-text">Datum: </span>{{ $member->datum}}</p>
+              <p ><span class="member-text">Mood: </span><span class="{{ $emojiNames[$member->emoji_id] }}">{{ $emojiNames[$member->emoji_id] }}</span></p>
+              
                 <p><span class="member-text">Review:</span></p>
                 <div class="revDiv">{{ $member->review }}</div>
                 <textarea class="edit-review" style="display: none;">{{ $member->review }}</textarea>
@@ -105,7 +107,6 @@
                 <button class="mainbtn delete-btn" data-id="{{ $member->id }}">Delete</button>
             </div>
         </div>
-        <i class="icon bx bx-chevron-down" style="float: right;"></i>
     </div>
         @endforeach
         @endif

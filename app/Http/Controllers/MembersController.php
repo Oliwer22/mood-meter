@@ -13,8 +13,15 @@ class MembersController extends Controller
     {
         try {
             $reviews = Review::all();
-            $members = $reviews->map(function ($review) {
-                return [
+            $emojiNames = [
+                1 => 'Dead',
+                2 => 'Frown',
+                3 => 'Neutral',
+                4 => 'Smile',
+                5 => 'Happy',
+            ];
+            $members = $reviews->map(function ($review) use ($emojiNames) { 
+                return (object)[
                     'id' => $review->id,
                     'emoji_id' => $review->emoji_id,
                     'name' => $review->name,
@@ -27,9 +34,9 @@ class MembersController extends Controller
                     'vooropleiding' => $review->vooropleiding,
                     'review' => $review->review,
                     'datum' => $review->datum,
+                    'emoji_name' => $emojiNames[$review->emoji_id]
                 ];
             });
-    
             return $members;
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
@@ -40,7 +47,14 @@ class MembersController extends Controller
     {
         $members = Review::all();
         $memberstotal = Review::count();
-        return view('Admin/Page/users', ['members' => $members, 'memberstotal'=>$memberstotal]);
+        $emojiNames = [
+            1 => 'Dead',
+            2 => 'Frown',
+            3 => 'Neutral',
+            4 => 'Smile',
+            5 => 'Happy',
+        ];
+        return view('Admin/Page/users', ['members' => $members, 'memberstotal'=>$memberstotal, 'emojiNames' => $emojiNames]);
     }
 
     public function editReview(Request $request)
@@ -70,4 +84,5 @@ class MembersController extends Controller
 
         return response()->download($file, 'reviews.xlsx')->deleteFileAfterSend(true);
     }
+    
 }

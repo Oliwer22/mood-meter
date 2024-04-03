@@ -5,7 +5,7 @@ use App\Models\Review;
 use App\Models\Emoji;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
-
+use Illuminate\Support\Facades\DB;
 class ReviewController extends Controller
 {
 public function store(Request $request)
@@ -35,7 +35,6 @@ public function store(Request $request)
             'emoji_id' => $request->emoji_id,
         ]);
     }
-    
     return back();
 }
 private function getEmojiNameById($id)
@@ -57,6 +56,10 @@ public function getDataForPieChart()
     return response()->json($data);
 }
 
-
+public function dellall()
+{
+    DB::table('reviews')->truncate();
+    return redirect()->back()->with('success', 'All reviews deleted successfully!');
+}
 
 }

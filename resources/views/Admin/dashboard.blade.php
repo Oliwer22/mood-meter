@@ -75,7 +75,29 @@
   <section class="dash-section">
       <div class="text">Dashboard, {{ Auth::user()->name }} | {{ Auth::user()->role }}</div>
       <div>
-
+      <div>
+    @if ($lastmember)
+        <h1 class="member-dash-text">Last Member</h1>
+        <div class="member-dash" id="member-{{ $lastmember->id }}">
+            <div>
+                <p>
+                  <span class="member-text">Naam: </span> {{ $lastmember->name }} | 
+                  <span class="member-text">Email: </span> {{ $lastmember->email }} | 
+                  <span class="member-text">Datum: </span>{{ $lastmember->datum}} |
+                  <span class="{{ $lastmemberEmojiName }}">{{ $lastmemberEmojiName }}</span>
+                </p>
+                <div class="revDiv">{{ $lastmember->review }}</div>
+                  
+                </div>
+            </div>
+        </div>
+    @else
+    <h1 class="member-dash-text">Last Member</h1>
+    <div class="member-dash">
+            <p>No members found.</p>
+        </div>
+    @endif
+</div>
       <div class="AllStats">
       <div class="dayBtn">
         <button id="oneDay" class="mainbtn changeDbtn">1 Day</button>
@@ -96,14 +118,26 @@
         <p><span class="member-text">Total Members: {{ $emojiPieChartTotal }}</span></p>
     </div>
       </div>
-<script>    document.getElementById('log_out').addEventListener('click', function() {
+      
+
+</section>
+<section>
+  <div class="footer flex items-center justify-center h-16 flex-col">
+    <div class="text">Mood Meter</div>
+    <div class="text">© 2024 Oliwier Wozniak</div>
+  </div>
+</section>
+
+
+<script>    
+document.getElementById('log_out').addEventListener('click', function() {
         console.log('Logout button clicked');
         document.getElementById('logout-form').submit();
     });</script>
   <script src="{{ asset('src/script/scripts.js') }}"></script>
   <script src="{{ asset('src/script/stats.js') }}"></script>
   <script src="{{ asset('src/script/data.js') }}"></script>
-
+  <script src="https://cdn.tailwindcss.com"></script>
 </body>
 </html>
 @endif
