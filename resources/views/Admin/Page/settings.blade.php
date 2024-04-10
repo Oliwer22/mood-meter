@@ -1,10 +1,10 @@
 @if (!Auth::check())
-    @include('404')
+    @include('Admin/404')
 @else
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Mood Settings</title>
+  <title>Mood Settings | {{ Auth::user()->role }}</title>
   <link rel="stylesheet" href="{{ asset('src/style/slider.css') }}" />
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
@@ -63,8 +63,8 @@
             <div class="designation">{{ Auth::user()->role }}</div>
           </div>
           <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-    @csrf
-</form>
+            @csrf
+        </form>
         </div>
         <i class="bx bx-log-out" id="log_out"></i>
       </li>
@@ -73,6 +73,12 @@
   <section class="dash-section">
     <div class="text">Settings</div>
   </section>
+  <section>
+  <div class="footer flex items-center justify-center h-16 flex-col">
+    <div class="text">Mood Meter</div>
+    <div class="text">© 2024 Oliwier Wozniak</div>
+  </div>
+</section>
   <script src="{{ asset('src/script/scripts.js') }}"></script>
   <script>
     document.getElementById('log_out').addEventListener('click', function() {
@@ -80,6 +86,7 @@
         document.getElementById('logout-form').submit();
     });
 </script>
+<script src="https://cdn.tailwindcss.com"></script>
 </body>
 </html>
 @endif

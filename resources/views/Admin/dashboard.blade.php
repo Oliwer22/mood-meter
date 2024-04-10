@@ -1,10 +1,10 @@
 @if (!Auth::check())
-    @include('404')
+    @include('Admin/404')
 @else
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Mood Dashboard</title>
+  <title>Mood Dashboard | {{ Auth::user()->role }}</title>
   <link rel="stylesheet" href="{{ asset('src/style/slider.css') }}" />
   <link rel="stylesheet" href="{{ asset('src/style/dashmain.css') }}" />
 
