@@ -36,13 +36,7 @@
         </a>
         <span class="tooltip">Member list</span>
       </li>
-      <li>
-        <a href="{{ route('data') }}">
-          <i class="bx bx-pie-chart-alt-2"></i>
-          <span class="link_name">Data</span>
-        </a>
-        <span class="tooltip">Data</span>
-      </li>
+
       <li>
         <a href="{{ route('settings') }}">
           <i class="bx bx-cog"></i>

@@ -1,0 +1,12 @@
+.event-on {
+    background-color: #29be04;
+}
+body.event-mode .navbar {
+    display: none;
+}
+body.event-mode .burger-menu {
+    display: none;
+}
+body.event-mode-footer .footerdata {
+    display: none;
+}

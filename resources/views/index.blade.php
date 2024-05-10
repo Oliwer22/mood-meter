@@ -7,6 +7,8 @@
   <title>Mood Meter</title>
   <link rel="stylesheet" href="{{ asset('src/style/mainstyle.css') }}" />
   <link rel="stylesheet" href="{{ asset('src/style/nav-footer.css') }}" />
+  <link rel="stylesheet" href="{{ asset('src/style/events.css') }}" />
+
 </head>
 
 <body>
@@ -191,7 +193,7 @@
       </form>
 </section>
 
-  <footer>
+  <footer class="footerdata">
     <p>Copyright &copy; <span id="year"></span> <a>Oliwier Wozniak.</a> All rights reserved.</p>
     <p>Made By <a href="https://my-oliwier.com" target="_blank">Oliwier Wozniak</a></p>
   </footer>
@@ -226,4 +228,40 @@
 </html>
 <script src="{{ asset('src/script/scripts.js') }}"></script>
 <script src="{{ asset('src/script/main.js') }}"></script>
+<script>
+    function ToggleEventNavbar() {
+        var element = document.body;
+        element.classList.toggle("event-mode");
+        element.classList.toggle("event-on");
 
+        var isToggleEvent = element.classList.contains("event-mode");
+        localStorage.setItem("ToggleEventNavbar", isToggleEvent);
+        localStorage.setItem("EventOnNavbar", element.classList.contains("event-on"));
+        document.getElementById("toggleSwitchNavbar").checked = isToggleEvent;
+        console.log("Event is :", isToggleEvent);
+    }
+    function ToggleEventFooter() {
+        var element = document.body;
+        element.classList.toggle("event-mode-footer");
+        element.classList.toggle("event-on-footer");
+
+        var isToggleEventFooter = element.classList.contains("event-mode-footer");
+        localStorage.setItem("ToggleEventFooter", isToggleEventFooter);
+        localStorage.setItem("EventOnFooter", element.classList.contains("event-on-footer"));
+        document.getElementById("toggleSwitchFooter").checked = isToggleEventFooter;
+        console.log("EventFooter is :", isToggleEventFooter);
+    }
+    function applyEvent() {
+        var isToggleEventNavbar = localStorage.getItem("ToggleEventNavbar") === "true";
+        var isToggleEventFooter = localStorage.getItem("ToggleEventFooter") === "true";
+        if (isToggleEventNavbar) {
+            document.body.classList.add("event-mode");
+        }
+        if (isToggleEventFooter) {
+            document.body.classList.add("event-mode-footer");
+        }
+        document.getElementById("toggleSwitchNavbar").checked = isToggleEventNavbar;
+        document.getElementById("toggleSwitchFooter").checked = isToggleEventFooter;
+    }
+    applyEvent();
+    </script>

@@ -7,6 +7,8 @@
   <title>Mood Settings | {{ Auth::user()->role }}</title>
   <link rel="stylesheet" href="{{ asset('src/style/slider.css') }}" />
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="{{ asset('src/style/events.css') }}" />
+
 </head>
 <body>
   <div class="sidebar">
@@ -33,13 +35,7 @@
         </a>
         <span class="tooltip">Member list</span>
       </li>
-      <li>
-        <a href="{{ route('data') }}">
-          <i class="bx bx-pie-chart-alt-2"></i>
-          <span class="link_name">Data</span>
-        </a>
-        <span class="tooltip">Data</span>
-      </li>
+
       <li>
         <a href="{{ route('settings') }}">
           <i class="bx bx-cog"></i>
@@ -72,6 +68,58 @@
   </div>
   <section class="dash-section">
     <div class="text">Settings</div>
+
+<div class="event-nav">
+    <h1>Event Mode Navbar</h1>
+  <label class="switch">
+    <input id="toggleSwitchNavbar" onclick="ToggleEventNavbar()" type="checkbox">
+    <span class="slider round"></span>
+  </label>
+</div>
+<div class="event-nav">
+    <h1>Event Mode Footer</h1>
+  <label class="switch">
+    <input id="toggleSwitchFooter" onclick="ToggleEventFooter()" type="checkbox">
+    <span class="slider round"></span>
+  </label>
+</div>
+<script>
+    function ToggleEventNavbar() {
+        var element = document.body;
+        element.classList.toggle("event-mode");
+        element.classList.toggle("event-on");
+
+        var isToggleEvent = element.classList.contains("event-mode");
+        localStorage.setItem("ToggleEventNavbar", isToggleEvent);
+        localStorage.setItem("EventOnNavbar", element.classList.contains("event-on"));
+        document.getElementById("toggleSwitchNavbar").checked = isToggleEvent;
+        console.log("Event is :", isToggleEvent);
+    }
+    function ToggleEventFooter() {
+        var element = document.body;
+        element.classList.toggle("event-mode-footer");
+        element.classList.toggle("event-on-footer");
+
+        var isToggleEventFooter = element.classList.contains("event-mode-footer");
+        localStorage.setItem("ToggleEventFooter", isToggleEventFooter);
+        localStorage.setItem("EventOnFooter", element.classList.contains("event-on-footer"));
+        document.getElementById("toggleSwitchFooter").checked = isToggleEventFooter;
+        console.log("EventFooter is :", isToggleEventFooter);
+    }
+    function applyEvent() {
+        var isToggleEventNavbar = localStorage.getItem("ToggleEventNavbar") === "true";
+        var isToggleEventFooter = localStorage.getItem("ToggleEventFooter") === "true";
+        if (isToggleEventNavbar) {
+            document.body.classList.add("event-mode");
+        }
+        if (isToggleEventFooter) {
+            document.body.classList.add("event-mode-footer");
+        }
+        document.getElementById("toggleSwitchNavbar").checked = isToggleEventNavbar;
+        document.getElementById("toggleSwitchFooter").checked = isToggleEventFooter;
+    }
+    applyEvent();
+</script>
   </section>
   <section>
   <div class="footer flex items-center justify-center h-16 flex-col">
