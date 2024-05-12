@@ -83,6 +83,13 @@
     <span class="slider round"></span>
   </label>
 </div>
+<div class="event-nav">
+    <h1>Event Mode Enquete</h1>
+  <label class="switch">
+    <input id="toggleSwitchEnquete" onclick="ToggleEventEnquete()" type="checkbox">
+    <span class="slider round"></span>
+  </label>
+</div>
 <script>
     function ToggleEventNavbar() {
         var element = document.body;
