@@ -51,7 +51,7 @@ body {
   }
   .moodmeter-button {
     text-decoration: none;
-    background-color: var(--bg-color);
+    background-color: green;
     color: var(--primary-text-color);
     padding: 20px;
     font-weight: bold;
@@ -92,7 +92,6 @@ body {
 
   .moodmeter-button:hover {
     cursor: pointer;
-    background-color: #094268;
     transition: var(--basic-transition-ms);
   }    .buttons {
     display: none;
@@ -222,7 +221,8 @@ label[for="data"] {
   }
   .moodmeter-button {
     text-decoration: none;
-    background-color: var(--bg-color);
+    background-color: green;
+
     color: var(--primary-text-color);
     padding: 20px;
     font-weight: bold;
@@ -262,7 +262,6 @@ label[for="data"] {
 
   .moodmeter-button:hover {
     cursor: pointer;
-    background-color: #094268;
     transition: var(--basic-transition-ms);
   }    .buttons {
     display: none;
@@ -431,7 +430,8 @@ label[for="data"] {
     }
     .moodmeter-button {
       text-decoration: none;
-      background-color: var(--bg-color);
+      background-color: green;
+
       color: var(--primary-text-color);
       padding: 20px;
       font-weight: bold;
@@ -481,7 +481,6 @@ label[for="data"] {
 
   .moodmeter-button:hover {
     cursor: pointer;
-    background-color: #094268;
     transition: var(--basic-transition-ms);
   }
     .sendbtn{
@@ -628,7 +627,8 @@ label[for="data"] {
     }
     .moodmeter-button {
       text-decoration: none;
-      background-color: var(--bg-color);
+      background-color: green;
+
       color: var(--primary-text-color);
       padding: 20px;
       font-weight: bold;
@@ -678,7 +678,6 @@ label[for="data"] {
 
   .moodmeter-button:hover {
     cursor: pointer;
-    background-color: #094268;
     transition: var(--basic-transition-ms);
   }
     .sendbtn{

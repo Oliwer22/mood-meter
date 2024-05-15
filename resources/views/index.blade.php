@@ -15,9 +15,8 @@
 <div class="navbar" >
     <div class="menu-items">
         <div><a href="#ROC">ROC Tilburg</a></div>
-        <div><a href="#Reviews">Reviews</a></div>
-        <div><a href="#Moodmeter">Moodmeter</a></div>
         <div><a href="{{ route('login') }}">Login</a></div>
+        
 
     </div>
 </div>
@@ -26,8 +25,9 @@
     <div class="burger-icon" onclick="toggleMenu()">&#9776;</div>
     <div class="burger-menu-links">
         <div><a href="#ROC">ROC Tilburg</a></div>
-        <div><a href="#Reviews">Reviews</a></div>
-        <div><a href="#Moodmeter">Moodmeter</a></div>
+        <div><a href="{{ route('login')}}">Login</a></div>
+
+
     </div>
 </div>
 <section id="Moodmeter">
@@ -50,7 +50,7 @@
     </div>
 </div>
 <div class="buttons" id="emojiButtons">
-    <button id="saveButton" class='moodmeter-button' onclick="saveEmoji()">Verstuur</button>
+    <button id="saveButton" class='moodmeter-button'style="display: none;" onclick="saveEmoji()">Verstuur</button>
     <div id="successMessage" class="message success" style="display: none;"></div>
     <div id="errorMessage" class="message error" style="display: none;"></div>
     <div id="cooldownMessage" class="message cooldown" style="display: none;"></div>
@@ -61,7 +61,7 @@
     var isCooldown = false;
 
     function handleClick(emoji, emojiId) {
-    document.getElementById('emojiIdInput').value = emojiId; // Set emoji ID
+        document.getElementById('emojiIdInput').value = emojiId; // Set emoji ID
         selectedEmoji = emoji;
         selectedEmojiId = emojiId;
         var selectedEmojiElement = document.querySelector('.selected');
@@ -75,7 +75,9 @@
         }
         console.log(emoji); 
         document.getElementById('emojiButtons').style.display = 'flex'; 
+        saveEmoji();
     }
+
 
     function saveEmoji() {
         if (isCooldown) {
@@ -95,21 +97,21 @@
 })
         .then(response => {
             if (response.ok) {
-                showSuccessMessage('Emoji is saved');
-                console.log('Emoji is saved');
+                showSuccessMessage('Emoji is goed opgeslagen. Wil je Enquete invullen?');
+                console.log('Emoji is goed opgeslagen');
                 isCooldown = true;
                 setTimeout(() => {
                     isCooldown = false;
                     saveButton.disabled = false;
                 }, 5000); 
             } else {
-                console.error('Failed to save emoji. Try again later.');
-                showError('Failed to save emoji. Try again later.');
+                console.error('Er was een error. Probeer later nog eens.');
+                showError('Er was een error. Probeer later nog eens.');
             }
         })
         .catch((error) => {
             console.error('Error:', error);
-            showError('An error occurred. Please try again later.');
+            showError('Er was een error. Probeer later nog eens.');
             saveButton.disabled = false; 
         });
     }
@@ -126,10 +128,10 @@
         showMessage('Cooldown');
     }
 
-    function showMessage(message, color) {
+    function showSuccessMessage(message) {
         var messageDiv = document.createElement('div');
         messageDiv.textContent = message;
-        messageDiv.style.backgroundColor = color;
+        messageDiv.style.backgroundColor = 'green';
         messageDiv.style.color = 'white';
         messageDiv.style.padding = '20px';
         messageDiv.style.textAlign = 'center';
@@ -138,6 +140,14 @@
         messageDiv.style.left = '0';
         messageDiv.style.width = '100%';
         messageDiv.style.fontSize = '2rem';
+    
+        var enqueteButton = document.createElement('button');
+        enqueteButton.textContent = 'Enquete';
+        enqueteButton.className = 'moodmeter-button';
+        enqueteButton.onclick = openEnqueteForm;
+    
+        messageDiv.appendChild(enqueteButton);
+    
         document.body.appendChild(messageDiv);
         setTimeout(function() {
             document.body.removeChild(messageDiv);
@@ -145,12 +155,8 @@
     }
     
 </script>
-
-
-
-    <button class='moodmeter-button' onclick="openEnqueteForm()">Enquete</button>
+    <button class='moodmeter-button' style="display: none;" onclick="openEnqueteForm()">Enquete</button>
     </div>
-    
     <form id="enqueteForm" class="openEnquete" method="POST" action="{{ route('Data/reviews') }}">
     @csrf 
         <span id="closeButton" style="cursor: pointer;"onclick="closeEnqueteForm()">&times;</span>
@@ -181,8 +187,16 @@
                     <option value="Retailmanager">Retailmanager</option>
                     <option value="Online Marketeer">Online Marketeer</option>
                   </select>
-                  <label for="vooropleidingInput">Vooropleiding:</label>
-                  <input type="text" id="vooropleidingInput" name="vooropleiding" placeholder="Vooropleiding...">
+                <label for="vooropleidingSelect">Vooropleiding:</label>
+                <select id="vooropleidingSelect" name="vooropleiding">
+                    <option value="" disabled selected>Selecteer Vooropleiding</option>
+                    <option value="VWO">VWO</option>
+                    <option value="HAVO">HAVO</option>
+                    <option value="MAVO">MAVO</option>
+                    <option value="VMBO">VMBO</option>
+                    <option value="HBO">HBO</option>
+                    <option value="MBO">MBO</option>
+                </select>
                   <label for="reviewInput">Review: <span class="required">*</span></label>
                   <textarea id="reviewInput" name="review" placeholder="Review..."rwequired></textarea>
                   <input type="hidden" id="datumInput" name="datum" value="<?php echo date('Y-m-d'); ?>">

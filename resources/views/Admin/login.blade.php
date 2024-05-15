@@ -13,17 +13,14 @@
 <div class="navbar" >
     <div class="menu-items">
         <div><a href="{{route('index') }}#ROC">ROC Tilburg</a></div>
-        <div><a href="{{ route('index') }}#Reviews">Reviews</a></div>
-        <div><a href="{{ route('index') }}#Moodmeter">Moodmeter</a></div>
+
 
     </div>
 </div>
 <div class="burger-menu">
     <div class="burger-icon" onclick="toggleMenu()">&#9776;</div>
     <div class="burger-menu-links">
-        <div><a href="#ROC">ROC Tilburg</a></div>
-        <div><a href="#Reviews">Reviews</a></div>
-        <div><a href="#Moodmeter">Moodmeter</a></div>
+        <div><a href="{{ route('index') }}">ROC Tilburg</a></div>
     </div>
 </div>
 <body>
