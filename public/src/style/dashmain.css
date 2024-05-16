@@ -213,17 +213,17 @@
 }
 
 .Dead {
-    color: red;
+    color: rgb(255, 0, 0);
 }
 .Frown{
-    color:orange
+    color:rgb(255, 165, 0)
 }
 .Neutral {
-    color: yellow
+    color: rgb(165, 165, 15)
 }
 .Smile {
-    color: lime;
+    color: rgb(0, 255, 0);
 }
 .Happy {
-    color: green;
+    color: rgb(0, 128, 0);
 }
