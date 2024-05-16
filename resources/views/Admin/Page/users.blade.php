@@ -32,9 +32,9 @@
       <li>
         <a href="{{ route('users') }}">
           <i class="bx bx-user"></i>
-          <span class="link_name">Member list</span>
+          <span class="link_name">Gebruikers</span>
         </a>
-        <span class="tooltip">Member list</span>
+        <span class="tooltip">Gebruikers</span>
       </li>
 
       <li>
@@ -68,31 +68,31 @@
     </ul>
   </div>
   <section class="dash-section">
-    <div class="text">Members</div>
+    <div class="text">Gebruikers</div>
     <div class="functionsdiv">
 
     </div>
     <div>
         <div class="tests">
-      <form id="filter-form" action="" method="get">
-        <select id="filter-category" name="filter_category">
-          <option value="">Select Filter Category</option>
+      <form id="filter-form"  action="" method="get">
+        <select id="filter-category"style="padding: 8px;" name="filter_category">
+          <option value="">Select</option>
           <option value="opleiding">Opleiding</option>
           <option value="vooropleiding">Vooropleiding</option>
           <option value="mood">Mood</option>
         </select>
-        <select id="filter-value" name="filter_value" style="display: none;">
+        <select id="filter-value" style="padding: 8px;"name="filter_value" style="display: none;">
         </select>
-        <button type="submit">Filter</button>
+        <button type="submit" class="mainbtn export-btn">Filter</button>
       </form>
 
 
         <button id="export-btn" class="mainbtn export-btn" onclick="window.location.href='/export-reviews'">Export Reviews</button>
         @if(Auth::user()->role == 'Admin')
-        <button id="" class="mainbtn delete-btn-all" onclick="if(confirm('{{ Auth::user()->name }} Are you sure?')) { window.location.href='/dell-reviews' }">Delete All</button>
+        <button id="" class="mainbtn delete-btn-all" onclick="if(confirm('{{ Auth::user()->name }} Weet je het zeker? Kan niet meer terug!')) { window.location.href='/dell-reviews' }">Verwijder</button>
         @endif
         
-        <input type="text" id="search-input" class="search-input" placeholder="Search...">
+        <input type="text" id="search-input" class="search-input" placeholder="Zoeken...">
         </div>
         @if($members->isEmpty())
         <div class="member">
@@ -127,7 +127,7 @@
                 <div class="revDiv">{{ $member->review }}</div>
                 <textarea class="edit-review" style="display: none;">{{ $member->review }}</textarea>
                 @if(Auth::user()->role == 'Admin')
-                  <button class="mainbtn delete-btn" data-id="{{ $member->id }}">Delete</button>
+                  <button class="mainbtn delete-btn" data-id="{{ $member->id }}">Verwijder</button>
                 @endif
             </div>
         </div>

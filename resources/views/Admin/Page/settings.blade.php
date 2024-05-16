@@ -31,9 +31,9 @@
       <li>
         <a href="{{ route('users') }}">
           <i class="bx bx-user"></i>
-          <span class="link_name">Member list</span>
+          <span class="link_name">Gebruikers</span>
         </a>
-        <span class="tooltip">Member list</span>
+        <span class="tooltip">Gebruikers</span>
       </li>
 
       <li>

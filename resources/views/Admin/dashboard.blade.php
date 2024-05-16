@@ -32,9 +32,9 @@
       <li>
         <a href="{{ route('users') }}">
           <i class="bx bx-user"></i>
-          <span class="link_name">Member list</span>
+          <span class="link_name">Gebruikers</span>
         </a>
-        <span class="tooltip">Member list</span>
+        <span class="tooltip">Gebruikers</span>
       </li>
 
       <li>
@@ -86,9 +86,9 @@
             </div>
         </div>
     @else
-    <h1 class="member-dash-text">Last Member</h1>
+    <h1 class="member-dash-text">Laatste Gebruiker</h1>
     <div class="member-dash">
-            <p>No members found.</p>
+            <p>Geen gebruikers.</p>
         </div>
     @endif
 </div>
@@ -103,15 +103,13 @@
       <div class="wrapper">
       <div class="data1">
     <canvas  id="emojiChart"></canvas>
-    <p><span class="member-text">Total Members: {{ $emojiChartTotal }}</span></p>
+    <p><span class="member-text">Totaal Gebruikers: {{ $emojiChartTotal }}</span></p>
     </div>
     <div class="data2">
         <canvas id="emojiPieChart"></canvas>
-        <p><span class="member-text">Total Members: {{ $emojiPieChartTotal }}</span></p>
+        <p><span class="member-text">Totaal Gebruikers: {{ $emojiPieChartTotal }}</span></p>
     </div>
       </div>
-      
-
 </section>
 <section>
   <div class="footer flex items-center justify-center h-16 flex-col">
@@ -119,8 +117,6 @@
     <div class="text">© 2024 Oliwier Wozniak</div>
   </div>
 </section>
-
-
 <script>    
 document.getElementById('log_out').addEventListener('click', function() {
         console.log('Logout button clicked');
