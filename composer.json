@@ -12,6 +12,7 @@
         "laravel/tinker": "^2.8",
         "laravel/ui": "^4.4",
         "maatwebsite/excel": "^1.1",
+        "orangehill/iseed": "*",
         "phpoffice/phpexcel": "^1.8",
         "phpoffice/phpspreadsheet": "^2.0"
     },

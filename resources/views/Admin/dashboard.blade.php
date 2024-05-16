@@ -51,6 +51,14 @@
         </a>
         <span class="tooltip">Home</span>
       </li>
+      <li>
+        <a href="https://github.com/Oliwer22/mood-meter" target="_blank">
+          <i class='bx bx-code'></i>
+                    <span class="link_name">Repo</span>
+        </a>
+        <span class="tooltip">Repo</span>
+
+      </li>
       <li class="profile">
         <div class="profile_details">
           <img src="{{ asset('src/imgs/adminprof.png') }}" alt="profile image">
