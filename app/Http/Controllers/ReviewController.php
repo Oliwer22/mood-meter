@@ -21,7 +21,7 @@ public function store(Request $request)
     $data['address'] = $request->address ?? null;
     $data['phone'] = $request->phone ?? null;
     $data['opleiding'] = $request->opleiding ?? null;
-    $data['vooropleiding'] = $request->vooropleiding ?? null;
+    $data['vooropleiding'] = $request->vooropleiding === 'Anders' ? $request->vooropleidingAnders : $request->vooropleiding;
     $data['datum'] = $request->datum ?? now()->format('Y-m-d');
     if ($request->filled('leeftijd')) {
         $birthDate = Carbon::parse($request->leeftijd);

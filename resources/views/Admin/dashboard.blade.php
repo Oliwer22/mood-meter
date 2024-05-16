@@ -71,7 +71,7 @@
       <div>
       <div>
     @if ($lastmember)
-        <h1 class="member-dash-text">Last Member</h1>
+        <h1 class="member-dash-text">Nieuwe Gebruiker</h1>
         <div class="member-dash" id="member-{{ $lastmember->id }}">
             <div>
                 <p>
@@ -93,13 +93,11 @@
     @endif
 </div>
       <div class="AllStats">
-      <div class="dayBtn">
-        <button id="oneDay" class="mainbtn changeDbtn">1 Day</button>
-        <button id="threeDays" class="mainbtn changeDbtn">3 Days</button>
-        <button id="sevenDays" class="mainbtn changeDbtn">7 Days</button>
-      </div>
-        <canvas id="AllStats" ></canvas>
-        
+        <div class="dayBtn">
+          <label for="datePicker">Kies date:</label>
+          <input type="date" id="datePicker" name="datePicker">
+        </div>
+        <canvas id="AllStats"></canvas>
       </div>
       
       <div class="wrapper">

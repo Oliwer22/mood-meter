@@ -48,3 +48,4 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::get('/export-reviews', [MembersController::class, 'exportReviews']);
 Route::get('/dell-reviews', [ReviewController::class, 'dellall'])->name('truncateReviews');
+

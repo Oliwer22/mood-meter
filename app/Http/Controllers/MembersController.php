@@ -23,7 +23,7 @@ class MembersController extends Controller
             $members = $reviews->map(function ($review) use ($emojiNames) { 
                 return (object)[
                     'id' => $review->id,
-                    'emoji_id' => $review->emoji_id,
+                    'emoji_id' => $review->emoji_id, // Add this line
                     'name' => $review->name,
                     'lastName' => $review->lastName,
                     'leeftijd' => $review->leeftijd,
@@ -43,10 +43,10 @@ class MembersController extends Controller
         }
     }
     
-    public function index()
+    public function index(Request $request)
     {
-        $members = Review::all();
-        $memberstotal = Review::count();
+        $query = Review::query();
+
         $emojiNames = [
             1 => 'Dead',
             2 => 'Frown',
@@ -54,6 +54,42 @@ class MembersController extends Controller
             4 => 'Smile',
             5 => 'Happy',
         ];
+
+        // Reverse the array to map names to ids
+        $emojiIds = array_flip($emojiNames);
+
+        if ($request->has('filter_category') && $request->has('filter_value')) {
+            $filterCategory = $request->get('filter_category');
+            $filterValue = $request->get('filter_value');
+
+            // If the filter category is 'mood', use 'emoji_id' instead
+            if ($filterCategory === 'mood') {
+                $filterCategory = 'emoji_id';
+                // Map the mood name to its corresponding id
+                if (isset($emojiIds[$filterValue])) {
+                    $filterValue = $emojiIds[$filterValue];
+                }
+            }
+
+            if (!empty($filterCategory) && !empty($filterValue)) {
+                if ($filterCategory === 'vooropleiding' && $filterValue === 'REST') {
+                    $excludeOptions = ['VWO', 'HAVO', 'MAVO' ,'VMBO','HBO','MBO','UNI'];
+                    $query->whereNotIn($filterCategory, $excludeOptions);
+                } else {
+                    $query->where($filterCategory, $filterValue);
+                }
+            }
+        }
+
+        $members = $query->get();
+        $memberstotal = $query->count();
+
+        foreach ($members as $member) {
+            if (isset($member->emoji_id)) {
+                $member->emoji_name = $emojiNames[$member->emoji_id];
+            }
+        }
+
         return view('Admin/Page/users', ['members' => $members, 'memberstotal'=>$memberstotal, 'emojiNames' => $emojiNames]);
     }
 

@@ -113,17 +113,33 @@
         document.getElementById("toggleSwitchFooter").checked = isToggleEventFooter;
         console.log("EventFooter is :", isToggleEventFooter);
     }
+    function ToggleEventEnquete() {
+        var element = document.body;
+        element.classList.toggle("event-enquete");
+        element.classList.toggle("event-on-enquete");
+
+        var isToggleEventEnquete = element.classList.contains("event-enquete");
+        localStorage.setItem("ToggleEventEnquete", isToggleEventEnquete);
+        localStorage.setItem("EventOnEnquete", element.classList.contains("event-on-enquete"));
+        document.getElementById("toggleSwitchEnquete").checked = isToggleEventEnquete;
+        console.log("EventEnquete is :", isToggleEventEnquete);
+    }
     function applyEvent() {
         var isToggleEventNavbar = localStorage.getItem("ToggleEventNavbar") === "true";
         var isToggleEventFooter = localStorage.getItem("ToggleEventFooter") === "true";
+        var isToggleEventEnquete = localStorage.getItem("ToggleEventEnquete") === "true";
         if (isToggleEventNavbar) {
             document.body.classList.add("event-mode");
         }
         if (isToggleEventFooter) {
             document.body.classList.add("event-mode-footer");
         }
+        if (isToggleEventEnquete) {
+          document.body.classList.add("event-enquete");
+        }
         document.getElementById("toggleSwitchNavbar").checked = isToggleEventNavbar;
         document.getElementById("toggleSwitchFooter").checked = isToggleEventFooter;
+        document.getElementById("toggleSwitchEnquete").checked = isToggleEventEnquete;
     }
     applyEvent();
 </script>

@@ -1,17 +1,13 @@
-const oneDayButton = document.getElementById('oneDay');
-const threeDaysButton = document.getElementById('threeDays');
-const sevenDaysButton = document.getElementById('sevenDays');
+const datePicker = document.getElementById('datePicker');
 const ctx = document.getElementById('AllStats').getContext('2d');
 let registrationChart = null;
 
-oneDayButton.addEventListener('click', () => fetchData(1));
-threeDaysButton.addEventListener('click', () => fetchData(3));
-sevenDaysButton.addEventListener('click', () => fetchData(7));
+datePicker.addEventListener('change', () => fetchData(datePicker.value));
 
-function fetchData(days) {
-    console.log(`Fetching data for ${days} day(s)...`);
+function fetchData(date) {
+    console.log(`Fetching data for ${date}...`);
 
-    fetch(`/stats?days=${days}`)
+    fetch(`/stats?date=${date}`)
         .then(response => {
             if (!response.ok) {
                 throw new Error('Failed to fetch registration stats');
@@ -89,4 +85,6 @@ function fetchData(days) {
             console.error('Error:', error);
         });
 }
-fetchData(1);
+
+// Fetch data for today's date by default
+fetchData(new Date().toISOString().split('T')[0]);

@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="{{ asset('src/style/slider.css') }}" />
   <link rel="stylesheet" href="{{ asset('src/style/dashmain.css') }}" />
   <meta name="csrf-token" content="{{ csrf_token() }}">
-
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
@@ -74,6 +74,19 @@
     </div>
     <div>
         <div class="tests">
+      <form id="filter-form" action="" method="get">
+        <select id="filter-category" name="filter_category">
+          <option value="">Select Filter Category</option>
+          <option value="opleiding">Opleiding</option>
+          <option value="vooropleiding">Vooropleiding</option>
+          <option value="mood">Mood</option>
+        </select>
+        <select id="filter-value" name="filter_value" style="display: none;">
+        </select>
+        <button type="submit">Filter</button>
+      </form>
+
+
         <button id="export-btn" class="mainbtn export-btn" onclick="window.location.href='/export-reviews'">Export Reviews</button>
         @if(Auth::user()->role == 'Admin')
         <button id="" class="mainbtn delete-btn-all" onclick="if(confirm('{{ Auth::user()->name }} Are you sure?')) { window.location.href='/dell-reviews' }">Delete All</button>
@@ -92,7 +105,7 @@
         <div>
             <p>
               <span class="member-text">Nr:</span> {{ $member->id }} |
-            <span class="member-text">Naam:</span> {{ $member->name }} {{ $member->lastName }} |
+            <span class="member-text">Naam:</span> {{ $member->name }} | <span class="member-text">Achternaam: </span>{{ $member->lastName }} |
             <span class="member-text">Email:</span> {{ $member->email }}</p>
             <div class="additional-details">
               @if($member->phone)
@@ -157,6 +170,48 @@ document.getElementById('search-input').addEventListener('input', function() {
         console.log('Logout button clicked');
         document.getElementById('logout-form').submit();
     });
+
+
+
+$(document).ready(function() {
+  var opleidingOptions = ['Allround ICT','Expert ICT','Grafisch vormgever','Webdeveloper','Content Creator','E-commerce Specialist','(Junior) Accountmanager','Retailmanager','Online Marketeer','Algemeen']; 
+  var vooropleidingOptions = ['VWO', 'HAVO', 'MAVO' ,'VMBO','HBO','MBO','UNI','REST']; 
+  var moodOptions = ['Happy', 'Smile', 'Neutral', 'Frown', 'Dead'];
+
+  $('#filter-category').on('change', function() {
+    var category = $(this).val();
+    var options;
+
+    switch (category) {
+      case 'opleiding':
+        options = opleidingOptions;
+        break;
+      case 'vooropleiding':
+        options = vooropleidingOptions;
+        break;
+      case 'mood':
+        options = moodOptions;
+        break;
+      default:
+        options = [];
+    }
+
+    var optionsHtml = options.map(function(option) {
+      return '<option value="' + option + '">' + option + '</option>';
+    }).join('');
+
+    $('#filter-value').html(optionsHtml).show();
+  });
+
+  $('#filter-value').on('change', function() {
+    var value = $(this).val();
+    var excludeOptions = ['VWO', 'HAVO', 'MAVO' ,'VMBO','HBO','MBO','UNI'];
+    document.querySelectorAll('.member').forEach(function(member) {
+      var vooropleiding = member.getAttribute('data-vooropleiding');
+      member.style.display = excludeOptions.includes(vooropleiding) && value === 'REST' ? 'none' : 'block';
+    });
+  });
+});
 </script>
 </body>
 </html>

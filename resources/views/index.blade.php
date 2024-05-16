@@ -129,6 +129,11 @@
     }
 
     function showSuccessMessage(message) {
+        var isToggleEventEnquete = localStorage.getItem("ToggleEventEnquete") === "true";
+        if (isToggleEventEnquete) {
+            message = 'Emoji is goed opgeslagen. Enquete zijn nu uitgezet';
+        }
+
         var messageDiv = document.createElement('div');
         messageDiv.textContent = message;
         messageDiv.style.backgroundColor = 'green';
@@ -140,14 +145,15 @@
         messageDiv.style.left = '0';
         messageDiv.style.width = '100%';
         messageDiv.style.fontSize = '2rem';
-    
-        var enqueteButton = document.createElement('button');
-        enqueteButton.textContent = 'Enquete';
-        enqueteButton.className = 'moodmeter-button';
-        enqueteButton.onclick = openEnqueteForm;
-    
-        messageDiv.appendChild(enqueteButton);
-    
+
+        if (!isToggleEventEnquete) {
+            var enqueteButton = document.createElement('button');
+            enqueteButton.textContent = 'Enquete';
+            enqueteButton.className = 'moodmeter-button';
+            enqueteButton.onclick = openEnqueteForm;
+            messageDiv.appendChild(enqueteButton);
+        }
+
         document.body.appendChild(messageDiv);
         setTimeout(function() {
             document.body.removeChild(messageDiv);
@@ -186,6 +192,8 @@
                     <option value="(Junior) Accountmanager">(Junior) Accountmanager</option>
                     <option value="Retailmanager">Retailmanager</option>
                     <option value="Online Marketeer">Online Marketeer</option>
+                    <option value="Algemeen">Algemeen</option>
+
                   </select>
                 <label for="vooropleidingSelect">Vooropleiding:</label>
                 <select id="vooropleidingSelect" name="vooropleiding">
@@ -196,7 +204,24 @@
                     <option value="VMBO">VMBO</option>
                     <option value="HBO">HBO</option>
                     <option value="MBO">MBO</option>
+                    <option value="UNI">UNI</option>
+                    <option value="Anders">Anders</option>
                 </select>
+                <script>
+                    document.getElementById('vooropleidingSelect').addEventListener('change', function() {
+                        var andersInput = document.getElementById('andersInput');
+                        if (this.value === 'Anders' && !andersInput) {
+                            andersInput = document.createElement('input');
+                            andersInput.type = 'text';
+                            andersInput.id = 'andersInput';
+                            andersInput.name = 'vooropleidingAnders';
+                            andersInput.placeholder = 'Vul in...';
+                            this.parentNode.insertBefore(andersInput, this.nextSibling);
+                        } else if (this.value !== 'Anders' && andersInput) {
+                            andersInput.parentNode.removeChild(andersInput);
+                        }
+                    });
+                </script>
                   <label for="reviewInput">Review: <span class="required">*</span></label>
                   <textarea id="reviewInput" name="review" placeholder="Review..."rwequired></textarea>
                   <input type="hidden" id="datumInput" name="datum" value="<?php echo date('Y-m-d'); ?>">
@@ -265,17 +290,33 @@
         document.getElementById("toggleSwitchFooter").checked = isToggleEventFooter;
         console.log("EventFooter is :", isToggleEventFooter);
     }
+    function ToggleEventEnquete() {
+        var element = document.body;
+        element.classList.toggle("event-enquete");
+        element.classList.toggle("event-on-enquete");
+
+        var isToggleEventEnquete = element.classList.contains("event-enquete");
+        localStorage.setItem("ToggleEventEnquete", isToggleEventEnquete);
+        localStorage.setItem("EventOnEnquete", element.classList.contains("event-on-enquete"));
+        document.getElementById("toggleSwitchEnquete").checked = isToggleEventEnquete;
+        console.log("EventEnquete is :", isToggleEventEnquete);
+    }
     function applyEvent() {
         var isToggleEventNavbar = localStorage.getItem("ToggleEventNavbar") === "true";
         var isToggleEventFooter = localStorage.getItem("ToggleEventFooter") === "true";
+        var isToggleEventEnquete = localStorage.getItem("ToggleEventEnquete") === "true";
         if (isToggleEventNavbar) {
             document.body.classList.add("event-mode");
         }
         if (isToggleEventFooter) {
             document.body.classList.add("event-mode-footer");
         }
+        if (isToggleEventEnquete) {
+          document.body.classList.add("event-enquete");
+        }
         document.getElementById("toggleSwitchNavbar").checked = isToggleEventNavbar;
         document.getElementById("toggleSwitchFooter").checked = isToggleEventFooter;
+        document.getElementById("toggleSwitchEnquete").checked = isToggleEventEnquete;
     }
     applyEvent();
     </script>
