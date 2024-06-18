@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Mood Members | {{ Auth::user()->role }}</title>
+  <title>Mood Gebruikers | {{ Auth::user()->role }}</title>
   <link rel="stylesheet" href="{{ asset('src/style/slider.css') }}" />
   <link rel="stylesheet" href="{{ asset('src/style/dashmain.css') }}" />
   <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -76,7 +76,7 @@
         <div class="tests">
       <form id="filter-form"  action="" method="get">
         <select id="filter-category"style="padding: 8px;" name="filter_category">
-          <option value="">Select</option>
+          <option value="">Selecteer</option>
           <option value="opleiding">Opleiding</option>
           <option value="vooropleiding">Vooropleiding</option>
           <option value="mood">Mood</option>
@@ -87,7 +87,7 @@
       </form>
 
 
-        <button id="export-btn" class="mainbtn export-btn" onclick="window.location.href='/export-reviews'">Export Reviews</button>
+        <button id="export-btn" class="mainbtn export-btn" onclick="window.location.href='/export-reviews'">Export</button>
         @if(Auth::user()->role == 'Admin')
         <button id="" class="mainbtn delete-btn-all" onclick="if(confirm('{{ Auth::user()->name }} Weet je het zeker? Kan niet meer terug!')) { window.location.href='/dell-reviews' }">Verwijder</button>
         @endif

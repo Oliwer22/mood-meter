@@ -13,7 +13,7 @@ class MoodController extends Controller
 
     public function store(Request $request)
     {
-        // Handle storing mood data 
+        // Handle storing mood data later
 
     }
 }

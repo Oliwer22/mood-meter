@@ -133,7 +133,6 @@
         if (isToggleEventEnquete) {
             message = 'Emoji is goed opgeslagen. Enquete zijn nu uitgezet';
         }
-
         var messageDiv = document.createElement('div');
         messageDiv.textContent = message;
         messageDiv.style.backgroundColor = 'green';
@@ -145,7 +144,6 @@
         messageDiv.style.left = '0';
         messageDiv.style.width = '100%';
         messageDiv.style.fontSize = '2rem';
-
         if (!isToggleEventEnquete) {
             var enqueteButton = document.createElement('button');
             enqueteButton.textContent = 'Enquete';
@@ -226,14 +224,14 @@
                   <textarea id="reviewInput" name="review" placeholder="Review..."rwequired></textarea>
                   <input type="hidden" id="datumInput" name="datum" value="<?php echo date('Y-m-d'); ?>">
                   <input type="checkbox" name="data" id="data" class="mr-2" required>
-                  <label for="data">Ik ga akkord dat mijn gegevens worden gebruikt later</label>
+                  <label for="data">ik ga akkoord dat mijn gegevens worden later gebruikt</label>
                   <button type="submit" class="sendbtn">Verstuur</button>
                   </div>
       </form>
 </section>
 
   <footer class="footerdata">
-    <p>Copyright &copy; <span id="year"></span> <a>Oliwier Wozniak.</a> All rights reserved.</p>
+    <p>Copyright &copy; <span id="year"></span> All rights reserved.</p>
     <p>Made By <a href="https://my-oliwier.com" target="_blank">Oliwier Wozniak</a></p>
   </footer>
 

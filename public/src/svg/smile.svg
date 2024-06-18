@@ -6,13 +6,13 @@
         fill: #4df73b;
         stroke: #5e5b00;
         stroke-miterlimit: 10;
-        stroke-width: 5px;
+        stroke-width: 3px;
       }
 
       .cls-2 {
         fill: #5e5b00;
-        stroke-width: 0px;
-      }
+        stroke-width: 3px;
+      } 
     </style>
   </defs>
   <circle id="hoofd" class="cls-1" cx="65.41" cy="65.41" r="62.91"/>

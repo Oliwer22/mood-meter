@@ -11,7 +11,7 @@
         fill: #ffce00;
         stroke: #7f5d00;
         stroke-miterlimit: 10;
-        stroke-width: 5px;
+        stroke-width: 3px;
       }
     </style>
   </defs>

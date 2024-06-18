@@ -5,7 +5,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ReviewEdit extends Model
 {
-    protected $table = 'reviews'; // Adjust table name if needed
+    protected $table = 'reviews'; 
 
-    protected $fillable = ['name', 'email', 'review']; // Add other fillable attributes as needed
+    protected $fillable = ['name', 'email', 'review']; 
 }

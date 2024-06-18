@@ -23,7 +23,7 @@ class MembersController extends Controller
             $members = $reviews->map(function ($review) use ($emojiNames) { 
                 return (object)[
                     'id' => $review->id,
-                    'emoji_id' => $review->emoji_id, // Add this line
+                    'emoji_id' => $review->emoji_id,
                     'name' => $review->name,
                     'lastName' => $review->lastName,
                     'leeftijd' => $review->leeftijd,
@@ -93,18 +93,18 @@ class MembersController extends Controller
         return view('Admin/Page/users', ['members' => $members, 'memberstotal'=>$memberstotal, 'emojiNames' => $emojiNames]);
     }
 
-    public function editReview(Request $request)
-    {
-        try {
-            $member = ReviewEdit::findOrFail($request->id);
-            $member->review = $request->review;
-            $member->save();
-            
-            return response()->json(['message' => 'Review updated successfully']);
-        } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 500);
-        }
-    }
+    //public function editReview(Request $request)
+    //{
+    //    try {
+    //        $member = ReviewEdit::findOrFail($request->id);
+    //        $member->review = $request->review;
+    //        $member->save();
+    //        
+    //        return response()->json(['message' => 'Review updated successfully']);
+    //    } catch (\Exception $e) {
+    //        return response()->json(['error' => $e->getMessage()], 500);
+    //    }
+    //}
 
     public function deleteMember(Request $request)
     {

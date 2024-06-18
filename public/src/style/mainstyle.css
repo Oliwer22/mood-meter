@@ -8,16 +8,15 @@
 
 }
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    scroll-behavior: smooth;
-    font-family: 'Poppins', sans-serif;
-    text-decoration: none;
-    color: white;
-    z-index: hidden;
-    
-  }
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  font-family: 'Poppins', sans-serif;
+  text-decoration: none;
+  color: white;
+  overflow: hidden; /* Updated to hide overflow/scroll */
+}
 body {
   background-color: rgb(236, 237, 240);
 }
@@ -85,8 +84,8 @@ body {
   }
 
   .moodsection img.selected {
-    filter: drop-shadow(0 0 10px #3366ff);
-    transform: scale(1.2);
+    filter: drop-shadow(0 0 5px #3366ff);
+    transform: scale(1.05);
 }
 
 

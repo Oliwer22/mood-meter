@@ -11,6 +11,7 @@ class StatsController extends Controller
 {
     public function AllStats(Request $request)
     {
+        //required for data filter
     $date = $request->query('date', Carbon::now()->format('Y-m-d'));
 
     $startOfDay = Carbon::createFromFormat('Y-m-d', $date)->startOfDay();

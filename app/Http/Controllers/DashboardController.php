@@ -14,6 +14,7 @@ class DashboardController extends Controller
 {
     private function getEmojiNameById($id)
 {
+    //Emojinames with id
     $emojiNames = [
         1 => 'Dead',
         2 => 'Frown',
@@ -25,8 +26,10 @@ class DashboardController extends Controller
     return $emojiNames[$id] ?? null;
 }
     public function dashboard() {
+        //gets the data to show on dashboard
         $emojiChartTotal = Emoji::count();
         $emojiPieChartTotal = Review::count(); 
+        //shows last member 
         $lastmember = Review::orderBy('created_at', 'desc')->first();
         $lastmemberEmojiName = $lastmember && $lastmember->emoji_id ? $this->getEmojiNameById($lastmember->emoji_id) : 'N/A';
         return view('Admin/dashboard', ['emojiChartTotal' => $emojiChartTotal, 'emojiPieChartTotal' => $emojiPieChartTotal, 'lastmember' => $lastmember, 'lastmemberEmojiName' => $lastmemberEmojiName]);

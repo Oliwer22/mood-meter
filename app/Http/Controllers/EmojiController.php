@@ -29,7 +29,7 @@ class EmojiController extends Controller
         $emoji->emoji_id = $request->emoji_id;
         $emoji->save();
 
-        // Return a JSON response indicating success
+        // Return a JSON response success
         return response()->json(['success' => true]);
     }
 }

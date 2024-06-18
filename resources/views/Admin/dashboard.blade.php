@@ -102,7 +102,7 @@
 </div>
       <div class="AllStats">
         <div class="dayBtn">
-          <label for="datePicker">Kies date:</label>
+          <label for="datePicker">Kies datum:</label>
           <input type="date" id="datePicker" name="datePicker">
         </div>
         <canvas id="AllStats"></canvas>

@@ -16,7 +16,6 @@
 }  
 
 
-
 .wrapper {
     display: flex; 
     justify-content: space-between; 
@@ -164,6 +163,7 @@
     padding: 10px 10px 10px 10px; 
     border-bottom: 1px solid var(--color-default);
     background-color: #ebebeb;
+    margin-bottom: 20px;
 
 }
 .mainbtn{
@@ -179,17 +179,16 @@
     transition: var(--basic-transition-ms);
 }
 .delete-btn{
-    background-color: var(--btn-bg);
-    color: red;
+    background-color: red;
+    color: white;
     padding: 8px;
     font-weight: bold;
     border: 3px solid red;
     border-radius: 5px;
-    margin-top: 10px;
 }
 .delete-btn-all{
-    background-color: var(--btn-bg);
-    color: red;
+    background-color: red;
+    color: white;
     padding: 8px;
     font-weight: bold;
     border: 3px solid red;
@@ -197,11 +196,12 @@
 }
 .delete-btn:hover,.delete-btn-all:hover{ 
     color: white;
-    background-color: red;
+    background-color: rgb(212, 3, 3);
+    border: 3px solid rgb(212, 3, 3);
 }
 .export-btn{
-    background-color: var(--btn-bg);
-    color: var(--color-hover);
+    background-color: var(--color-hover);
+    color: white;
     padding: 8px;
     font-weight: bold;
     border: 3px solid var(--color-hover);
@@ -209,7 +209,8 @@
 }
 .export-btn:hover{ 
     color: white;
-    background-color: var(--color-hover);
+    background-color: #1d51ee;
+    border: 3px solid #1d51ee;
 }
 
 .Dead {

@@ -10,12 +10,14 @@ class ReviewController extends Controller
 {
 public function store(Request $request)
 {
+    //required data 
     $data = $request->validate([
         'name' => 'required',
         'email' => 'required|email',
         'review' => 'required',
         'emoji_id' => 'required',
     ]);
+    //data you can use
     $data['lastName'] = $request->lastName ?? null;
     $data['leeftijd'] = $request->leeftijd ?? null;
     $data['address'] = $request->address ?? null;
@@ -23,10 +25,12 @@ public function store(Request $request)
     $data['opleiding'] = $request->opleiding ?? null;
     $data['vooropleiding'] = $request->vooropleiding === 'Anders' ? $request->vooropleidingAnders : $request->vooropleiding;
     $data['datum'] = $request->datum ?? now()->format('Y-m-d');
+    //shows members age
     if ($request->filled('leeftijd')) {
         $birthDate = Carbon::parse($request->leeftijd);
         $data['leeftijd'] = Carbon::now()->diffInYears($birthDate);
     }
+    //makes the review emoji_id
     $review = Review::create($data);
     if ($request->filled('emoji_id')) {
         $emojiName = $this->getEmojiNameById($request->emoji_id);
@@ -39,6 +43,7 @@ public function store(Request $request)
 }
 private function getEmojiNameById($id)
 {
+    //changes id to names 
     $emojiNames = [
         1 => 'Dead',
         2 => 'Frown',
